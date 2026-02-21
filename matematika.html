@@ -4,6 +4,13 @@
     <meta charset="UTF-8">
     <title>Математика</title>
     <link rel="stylesheet" href="style.css">
+    <style>
+        /* Тест кооз көрүнүшү үчүн бир аз стиль */
+        .test-container { margin-top: 40px; padding: 20px; border-top: 2px solid #eee; }
+        .quiz-box { background: #f9f9f9; padding: 15px; margin-bottom: 15px; border-radius: 8px; text-align: left; }
+        .check-btn { background-color: #28a745; color: white; padding: 12px 25px; border: none; border-radius: 5px; cursor: pointer; font-size: 16px; }
+        #math-result { font-weight: bold; margin-top: 15px; font-size: 18px; }
+    </style>
 </head>
 <body>
     <header>
@@ -12,6 +19,7 @@
             <nav><a href="index.html" class="nav-btn-link">🏠 Башкы бетке кайтуу</a></nav>
         </div>
     </header>
+
     <main class="container">
         <section class="library-section">
             <div class="book-card">
@@ -20,6 +28,65 @@
                 <a href="books/matematika6.pdf" target="_blank" class="read-btn">Окуу (PDF)</a>
             </div>
         </section>
+        <section class="topics">
+    <h2>Темалар:</h2>
+    <div class="topic-card" style="border: 1px solid #ddd; padding: 15px; border-radius: 10px; margin-bottom: 10px;">
+        <h3>1-тема: Сандарды кошуу жана кемитүү</h3>
+        <p>Бул темада кошуунун жана кемитүүнүн негизги эрежелерин үйрөнөсүз.</p>
+        <a href="math-lesson1.html" class="read-btn" style="color: rgb(194, 224, 41); font-weight: bold;">Теманы окуу →</a>
+    </div>
+</section>
+        
+
+        <section class="lesson-info" style="text-align: center; margin-top: 30px;">
+            <p>Теманы окуп бүттүңүзбү? Анда тесттен өтүңүз!</p>
+            <a href="math-test.html" style="background-color: #ffc107; color: black; padding: 15px 30px; text-decoration: none; border-radius: 10px; font-weight: bold; display: inline-block; border: 2px solid #e0a800;">
+                📝 Өзүнчө баракта тестти баштоо
+            </a>
+        </section>
+
+        <div class="test-container">
+            <h2 class="subject-title">📕 Өзүңдү текшерүү</h2>
+            
+            <div class="quiz-box">
+                <p><b>1. 5 * 5 + 5 канча болот?</b></p>
+                <input type="radio" name="m1" id="m1_1" value="0"> <label for="m1_1">25</label><br>
+                <input type="radio" name="m1" id="m1_2" value="1"> <label for="m1_2">30</label><br>
+                <input type="radio" name="m1" id="m1_3" value="0"> <label for="m1_3">35</label>
+            </div>
+
+            <div class="quiz-box">
+                <p><b>2. 100дүн жарымы канча?</b></p>
+                <input type="radio" name="m2" id="m2_1" value="1"> <label for="m2_1">50</label><br>
+                <input type="radio" name="m2" id="m2_2" value="0"> <label for="m2_2">40</label><br>
+                <input type="radio" name="m2" id="m2_3" value="0"> <label for="m2_3">60</label>
+            </div>
+
+            <div class="button-section" style="text-align: center;">
+                <button onclick="checkMath()" class="check-btn">Жыйынтыкты текшерүү</button>
+                <p id="math-result"></p>
+            </div>
+        </div>
     </main>
+
+    <script>
+    function checkMath() {
+        let score = 0;
+        let q1 = document.querySelector('input[name="m1"]:checked');
+        let q2 = document.querySelector('input[name="m2"]:checked');
+
+        if (q1 && q1.value === "1") score++;
+        if (q2 && q2.value === "1") score++;
+
+        let resultElement = document.getElementById('math-result');
+        if (q1 == null || q2 == null) {
+            resultElement.style.color = "red";
+            resultElement.innerText = "Сураныч, бардык суроолорго жооп бериңиз!";
+        } else {
+            resultElement.style.color = "blue";
+            resultElement.innerText = "Сиздин жыйынтык: " + score + " / 2";
+        }
+    }
+    </script>
 </body>
 </html>
