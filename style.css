@@ -152,3 +152,43 @@ footer {
         min-height: auto;
     }
 }
+.quiz-box {
+    text-align: left;
+    background: #ffffff;
+    padding: 15px;
+    margin-bottom: 20px; /* Суроолордун ортосундагы боштук */
+    border-radius: 8px;
+    border-left: 4px solid #007bff;
+}
+
+.button-section {
+    margin-top: 30px; /* Баскычты суроолордон алыстатат */
+    padding-bottom: 50px;
+}
+
+.check-btn {
+    background-color: #28a745;
+    color: white;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    display: block; /* Баскычты өзүнчө сапка чыгарат */
+    margin: 0 auto; /* Ортого коёт */
+}
+
+#math-result {
+    margin-top: 15px;
+    font-size: 18px;
+    color: #007bff;
+    font-weight: bold;
+}
+.quiz-section {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 10px;
+    margin-top: 30px;
+    border: 1px solid #ddd;
+}
+
