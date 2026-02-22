@@ -2,10 +2,10 @@
 <html lang="kg">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Билим Тести</title>
     <link rel="stylesheet" href="style.css">
     <style>
-        /* Сиздин стилдериңиз калат */
         .test-container {
             background: white;
             padding: 30px;
@@ -14,6 +14,32 @@
             max-width: 600px;
             margin: 40px auto;
         }
+        
+        /* ПРОГРЕСС-БАР СТИЛИ */
+        .progress-wrapper {
+            margin-bottom: 20px;
+        }
+        .progress-bar-bg {
+            background: #eee;
+            border-radius: 10px;
+            height: 12px;
+            width: 100%;
+            overflow: hidden;
+        }
+        #progress-fill {
+            background: #2ecc71;
+            height: 100%;
+            width: 0%; /* Башында 0% */
+            transition: width 0.4s ease;
+        }
+        #progress-stats {
+            text-align: right;
+            font-size: 14px;
+            color: #7f8c8d;
+            margin-top: 5px;
+            font-weight: bold;
+        }
+
         .question { font-size: 20px; margin-bottom: 20px; font-weight: bold; }
         .option {
             display: block;
@@ -48,10 +74,16 @@
 
     <main class="container">
         <div class="test-container" id="quiz-box">
+            <div class="progress-wrapper" id="progress-area">
+                <div class="progress-bar-bg">
+                    <div id="progress-fill"></div>
+                </div>
+                <div id="progress-stats">Суроо: 1 / 5</div>
+            </div>
+
             <div id="quiz">
                 <div class="question" id="q-text">Суроо жүктөлүүдө...</div>
-                <div id="options">
-                    </div>
+                <div id="options"></div>
                 <br>
                 <button id="submit-btn" onclick="nextQuestion()">Кийинки суроо</button>
             </div>
@@ -60,44 +92,43 @@
     </main>
 
     <script>
-        // 1. СУРООЛОРДУ УШУЛ ЖЕРГЕ КОШОСУЗ
         const quizData = [
             {
                 question: "1. Компьютердин 'мээси' кайсы?",
                 options: ["Монитор", "Процессор (CPU)", "Чычкан (Mouse)"],
-                correct: 1 // 1-индекс (Процессор)
+                correct: 1
             },
             {
                 question: "2. Интернетке кирүү үчүн кайсы программа колдонулат?",
                 options: ["Браузер", "Антивирус", "Photoshop"],
-                correct: 0 // 0-индекс (Браузер)
+                correct: 0
             },
             {
                 question: "3. Эң чоң маалымат бирдиги кайсы?",
                 options: ["Байт", "Килобайт", "Гегабайт"],
-                correct: 2 // 2-индекс (Гегабайт)
+                correct: 2
             },
             {  
-    question: "4. Файлдарды сактоочу негизги жабдык?",
-    options: ["Принтер", "Катуу диск (HDD)", "Сканер"],
-    correct: 1 // 1-индекс (экинчи вариант туура)
-},
-{ 
-    question:"5. Дүйнөдөгү эң чоң океан кайсы?",
-    options:["Атлантика океаны","Инди океаны","Тынч океаны"],
-    correct: 2// 2-индекс (Тынч океаны)
-}
+                question: "4. Файлдарды сактоочу негизги жабдык?",
+                options: ["Принтер", "Катуу диск (HDD)", "Сканер"],
+                correct: 1
+            },
+            { 
+                question:"5. Дүйнөдөгү эң чоң океан кайсы?",
+                options:["Атлантика океаны","Инди океаны","Тынч океаны"],
+                correct: 2
+            }
         ];
 
         let currentQuestion = 0;
         let score = 0;
 
-        // 2. Суроону экранга чыгаруу функциясы
         function loadQuiz() {
             const qText = document.getElementById("q-text");
             const optionsDiv = document.getElementById("options");
+            const progressFill = document.getElementById("progress-fill");
+            const progressStats = document.getElementById("progress-stats");
             
-            // Эски варианттарды тазалоо
             optionsDiv.innerHTML = "";
 
             // Суроону жазуу
@@ -110,9 +141,13 @@
                 label.innerHTML = `<input type="radio" name="answer" value="${index}"> ${option}`;
                 optionsDiv.appendChild(label);
             });
+
+            // ПРОГРЕССТИ ЖАҢЫРТУУ
+            const progressPercent = ((currentQuestion + 1) / quizData.length) * 100;
+            progressFill.style.width = progressPercent + "%";
+            progressStats.innerText = `Суроо: ${currentQuestion + 1} / ${quizData.length}`;
         }
 
-        // 3. Кийинки суроого өтүү жана текшерүү
         function nextQuestion() {
             const selectedOption = document.querySelector('input[name="answer"]:checked');
 
@@ -121,14 +156,12 @@
                 return;
             }
 
-            // Тууралыгын текшерүү
             if (parseInt(selectedOption.value) === quizData[currentQuestion].correct) {
                 score++;
             }
 
             currentQuestion++;
 
-            // Суроо бүткөнүн же улантууну текшерүү
             if (currentQuestion < quizData.length) {
                 loadQuiz();
             } else {
@@ -136,36 +169,32 @@
             }
         }
 
-        // 4. Жыйынтыкты көрсөтүү
-function showResult() {
-    const quizDiv = document.getElementById("quiz");
-    const resultText = document.getElementById("result-text");
+        function showResult() {
+            const quizDiv = document.getElementById("quiz");
+            const resultText = document.getElementById("result-text");
+            const progressArea = document.getElementById("progress-area");
 
-    // Пайызды эсептөө
-    const percentage = Math.round((score / quizData.length) * 100);
+            const percentage = Math.round((score / quizData.length) * 100);
 
-    quizDiv.style.display = "none";
-    resultText.style.display = "block";
-    
-    // Жыйынтыкка пайызды кошуу
-    resultText.innerHTML = `
-        🏁 Тест аяктады!<br>
-        Сиздин упайыңыз: ${score} / ${quizData.length}<br>
-        <b>Жыйынтык: ${percentage}%</b>
-    `;
-    
-    // Түстөр менен кооздоо
-    if (percentage >= 80) {
-        resultText.style.color = "#27ae60"; // Жашыл (мыкты)
-    } else if (percentage >= 50) {
-        resultText.style.color = "#e67e22"; // Саргыч (орто)
-    } else {
-        resultText.style.color = "#e74c3c"; // Кызыл (начар)
-    }
-
+            quizDiv.style.display = "none";
+            progressArea.style.display = "none"; // Жыйынтык чыкканда прогрессти жашыруу
+            resultText.style.display = "block";
+            
+            resultText.innerHTML = `
+                🏁 Тест аяктады!<br>
+                Сиздин упайыңыз: ${score} / ${quizData.length}<br>
+                <b>Жыйынтык: ${percentage}%</b>
+            `;
+            
+            if (percentage >= 80) {
+                resultText.style.color = "#27ae60";
+            } else if (percentage >= 50) {
+                resultText.style.color = "#e67e22";
+            } else {
+                resultText.style.color = "#e74c3c";
+            }
         }
 
-        // Тестти баштоо
         loadQuiz();
     </script>
 </body>

@@ -15,11 +15,22 @@
             margin-bottom: 20px;
             border-left: 6px solid #9b59b6;
         }
+        /* Прогресс-бардын стили */
+        .progress-wrapper {
+            position: sticky; /* Экрандын башында катып турат */
+            top: 0;
+            background: white;
+            padding: 15px 0;
+            z-index: 100;
+        }
+        .progress-container { background: #eee; border-radius: 10px; height: 12px; width: 100%; }
+        #progressBar { width: 0%; height: 100%; background: #9b59b6; border-radius: 10px; transition: 0.5s; }
+        
         .question { font-size: 18px; font-weight: bold; margin-bottom: 15px; display: block; }
         .option {
             display: block;
-            padding: 10px;
-            margin: 5px 0;
+            padding: 12px;
+            margin: 8px 0;
             background: #f9f9f9;
             border-radius: 8px;
             cursor: pointer;
@@ -27,24 +38,10 @@
         }
         .option:hover { background: #f3e5f5; }
         .submit-btn {
-            background: #9b59b6;
-            color: white;
-            border: none;
-            padding: 15px 50px;
-            font-size: 18px;
-            border-radius: 10px;
-            cursor: pointer;
-            display: block;
-            width: 100%;
-            font-weight: bold;
+            background: #9b59b6; color: white; border: none; padding: 15px;
+            font-size: 18px; border-radius: 10px; cursor: pointer; width: 100%; font-weight: bold;
         }
-        #result {
-            margin-top: 20px;
-            font-size: 20px;
-            font-weight: bold;
-            text-align: center;
-            display: none;
-        }
+        #result { margin-top: 20px; font-size: 20px; font-weight: bold; text-align: center; display: none; }
     </style>
 </head>
 <body>
@@ -57,7 +54,12 @@
     </header>
 
     <main class="container">
-        <h2 style="text-align: center; margin: 20px 0;">Компьютердин түзүлүшү боюнча тест</h2>
+        <div class="progress-wrapper">
+            <div class="progress-container">
+                <div id="progressBar"></div>
+            </div>
+            <p id="progressText" style="text-align: right; font-weight: bold; color: #9b59b6; margin-top: 5px;">Суроо: 0 / 3</p>
+        </div>
 
         <form id="quizForm">
             <div class="test-card">
@@ -75,23 +77,51 @@
             </div>
 
             <div class="test-card">
-                <span class="question">3. Төмөнкүлөрдүн ичинен кайсынысы маалыматты киргизүүчү түзүлүш?</span>
+                <span class="question">3. Кайсы түзүлүш маалыматты киргизүүгө кызмат кылат?</span>
                 <label class="option"><input type="radio" name="q3" value="0"> Монитор</label>
-                <li><strong>Маалыматты киргизүүчү түзүлүштөр</strong>: Клавиатура, чычкан, сканер, микрофон.</li>
                 <label class="option"><input type="radio" name="q3" value="1"> Чычкан (Mouse)</label>
-                <label class="option"><input type="radio" name="q3" value="0"> Наушник</label>
+                <label class="option"><input type="radio" name="q3" value="0"> Принтер</label>
             </div>
-            
-            
-
-[Image of input and output devices of a computer]
-
 
             <button type="button" class="submit-btn" onclick="checkQuiz()">Жыйынтыкты текшерүү</button>
         </form>
 
         <div id="result"></div>
     </main>
+
+    <script>
+        // Прогрессти көзөмөлдөө
+        document.querySelectorAll('input[type="radio"]').forEach(radio => {
+            radio.addEventListener('change', () => {
+                let total = 3; 
+                let answered = new Set();
+                document.querySelectorAll('input[type="radio"]:checked').forEach(c => answered.add(c.name));
+                
+                let count = answered.size;
+                let percent = (count / total) * 100;
+                
+                document.getElementById('progressBar').style.width = percent + "%";
+                document.getElementById('progressText').innerHTML = "Суроо: " + count + " / " + total;
+            });
+        });
+
+        // Жыйынтыкты текшерүү
+        function checkQuiz() {
+            let score = 0;
+            let form = document.getElementById('quizForm');
+            if(form.q1.value === "1") score++;
+            if(form.q2.value === "1") score++;
+            if(form.q3.value === "1") score++;
+
+            let resultDiv = document.getElementById('result');
+            resultDiv.style.display = "block";
+            resultDiv.innerHTML = "Сиздин жыйынтык: " + score + " / 3";
+            resultDiv.style.color = (score === 3) ? "#27ae60" : "#e74c3c";
+        }
+    </script>
+
+</body>
+</html>
 
     <script>
         function checkQuiz() {
