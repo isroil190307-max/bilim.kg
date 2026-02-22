@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="kg">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Тест: Компьютердин түзүлүшү</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        * { text-decoration: none !important; }
+        .test-card {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+            border-left: 6px solid #9b59b6;
+        }
+        .question { font-size: 18px; font-weight: bold; margin-bottom: 15px; display: block; }
+        .option {
+            display: block;
+            padding: 10px;
+            margin: 5px 0;
+            background: #f9f9f9;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .option:hover { background: #f3e5f5; }
+        .submit-btn {
+            background: #9b59b6;
+            color: white;
+            border: none;
+            padding: 15px 50px;
+            font-size: 18px;
+            border-radius: 10px;
+            cursor: pointer;
+            display: block;
+            width: 100%;
+            font-weight: bold;
+        }
+        #result {
+            margin-top: 20px;
+            font-size: 20px;
+            font-weight: bold;
+            text-align: center;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <h1>📝 Информатика Тест</h1>
+            <nav><a href="info-lesson1.html" class="nav-btn-link">🏠 Сабакка кайтуу</a></nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <h2 style="text-align: center; margin: 20px 0;">Компьютердин түзүлүшү боюнча тест</h2>
+
+        <form id="quizForm">
+            <div class="test-card">
+                <span class="question">1. Компьютердин "мээси" деп кайсы тетикти айтабыз?</span>
+                <label class="option"><input type="radio" name="q1" value="0"> Монитор</label>
+                <label class="option"><input type="radio" name="q1" value="1"> Процессор (CPU)</label>
+                <label class="option"><input type="radio" name="q1" value="0"> Катуу диск</label>
+            </div>
+
+            <div class="test-card">
+                <span class="question">2. Маалыматты убактылуу сактоочу эс тутум кандай аталат?</span>
+                <label class="option"><input type="radio" name="q2" value="1"> RAM (Ыкчам эс тутум)</label>
+                <label class="option"><input type="radio" name="q2" value="0"> Принтер</label>
+                <label class="option"><input type="radio" name="q2" value="0"> Клавиатура</label>
+            </div>
+
+            <div class="test-card">
+                <span class="question">3. Төмөнкүлөрдүн ичинен кайсынысы маалыматты киргизүүчү түзүлүш?</span>
+                <label class="option"><input type="radio" name="q3" value="0"> Монитор</label>
+                <li><strong>Маалыматты киргизүүчү түзүлүштөр</strong>: Клавиатура, чычкан, сканер, микрофон.</li>
+                <label class="option"><input type="radio" name="q3" value="1"> Чычкан (Mouse)</label>
+                <label class="option"><input type="radio" name="q3" value="0"> Наушник</label>
+            </div>
+            
+            
+
+[Image of input and output devices of a computer]
+
+
+            <button type="button" class="submit-btn" onclick="checkQuiz()">Жыйынтыкты текшерүү</button>
+        </form>
+
+        <div id="result"></div>
+    </main>
+
+    <script>
+        function checkQuiz() {
+            let score = 0;
+            let total = 3;
+            let form = document.getElementById('quizForm');
+            let resultDiv = document.getElementById('result');
+
+            let q1 = form.q1.value;
+            let q2 = form.q2.value;
+            let q3 = form.q3.value;
+
+            if (q1 === "1") score++;
+            if (q2 === "1") score++;
+            if (q3 === "1") score++;
+
+            resultDiv.style.display = "block";
+            resultDiv.innerHTML = "Сиздин жыйынтык: " + score + " / " + total;
+            
+            if (score === total) {
+                resultDiv.style.color = "#27ae60";
+                resultDiv.innerHTML += "<br>Азаматсыз! Сиз баарын туура таптыңыз! 🎉";
+            } else {
+                resultDiv.style.color = "#e74c3c";
+                resultDiv.innerHTML += "<br>Дагы бир жолу кайталап көрүңүз.";
+            }
+        }
+    </script>
+
+</body>
+</html>

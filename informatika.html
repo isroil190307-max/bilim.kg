@@ -5,6 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Информатика бөлүмү</title>
     <link rel="stylesheet" href="style.css">
+    <style>
+        /* СЫЗЫКТАРДЫ ӨЧҮРҮҮ ЖАНА ТҮСТӨР */
+        a { text-decoration: none !important; }
+        .info-card, .book-card { border-top: 5px solid #9b59b6 !important; }
+        .read-btn { background: #9b59b6 !important; color: white !important; }
+        .hero { background-color: #f3e5f5; padding: 30px; border-radius: 15px; text-align: center; }
+    </style>
 </head>
 <body>
 
@@ -13,7 +20,7 @@
             <h1>💻 ИНФОРМАТИКА БӨЛҮМҮ</h1>
             <p>Технология жана программалоо дүйнөсү</p>
             <nav>
-                <a href="index.html" class="nav-btn-link">🏠 Башкы бетке кайтуу</a>
+                <a href="index.html" class="nav-btn-link">🏠 Башкы бет</a>
             </nav>
         </div>
     </header>
@@ -21,28 +28,36 @@
     <main class="container">
         <section class="hero">
             <h2>Информатика боюнча окуу материалдары</h2>
-            <p>Бул жерден сиз окуу китептерин жана видео сабактарды таба аласыз.</p>
+            <p>Бул жерден сиз компьютердин түзүлүшү, программалоо жана санариптик сабаттуулук боюнча маалымат аласыз.</p>
         </section>
 
-        <section class="library-section">
-            <h3 style="text-align: center; margin-bottom: 20px;">📚 Электрондук китептер</h3>
-            <div class="library-grid">
-                
-                <div class="book-card">
-                    <div class="book-icon" style="font-size: 50px;">🖥️</div>
-                    <h3>Информатика 5-класс</h3>
-                    <p>Негизги түшүнүктөр</p>
-                    <a href="books/informatika5.pdf" target="_blank" class="read-btn">Окуу (PDF)</a>
-                    <a href="books/informatika5.pdf" download class="read-btn" style="background: #27ae60; margin-top: 5px;">Жүктөп алуу</a>
-                </div>
+        <section class="lessons-list" style="margin-top: 30px;">
+            <div class="topic-card" style="background: white; padding: 20px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); border-left: 5px solid #9b59b6;">
+                <h3>🌍 1-сабак: Компьютердин түзүлүшү</h3>
+                <p>Процессор, эс тутум жана киргизүү-чыгаруу түзүлүштөрү жөнүндө маалымат.</p>
+                <a href="info-lesson1.html" class="read-btn" style="color: rgb(194, 224, 41); font-weight: bold;">Теманы окуу →</a>
+            </div>
+        </section>
 
-                <div class="book-card">
-                    <div class="book-icon" style="font-size: 50px;">⌨️</div>
+        <section class="library-section" style="margin-top: 40px;">
+            <h3 style="text-align: center; margin-bottom: 20px;">📚 Электрондук китептер</h3>
+            <div class="library-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
+                
+                <div class="book-card" style="background: white; padding: 20px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); text-align: center;">
+                    <div class="book-icon" style="font-size: 50px;">🖥️</div>
                     <h3>Информатика 7-класс</h3>
                     <p>Программалоонун негиздери</p>
-                    <a href="books/informatika7.pdf" target="_blank" class="read-btn">Окуу (PDF)</a>
-                    <a href="books/informatika7.pdf" download class="read-btn" style="background: #27ae60; margin-top: 5px;">Жүктөп алуу</a>
+                    <a href="books/informatika7.pdf" target="_blank" class="read-btn" style="display: block; padding: 10px; border-radius: 5px; margin-bottom: 5px;">Окуу (PDF)</a>
+                    <a href="books/informatika7.pdf" download class="download-btn" style="background: #27ae60; color: white; display: block; padding: 10px; border-radius: 5px; text-decoration: none;">Жүктөп алуу</a>
                 </div>
 
             </div>
         </section>
+    </main>
+
+    <footer style="text-align: center; padding: 20px; margin-top: 50px; background: #2c3e50; color: white;">
+        <p>&copy; 2026 Билим Сайты. Бардык укуктар корголгон.</p>
+    </footer>
+
+</body>
+</html>
