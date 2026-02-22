@@ -10,50 +10,59 @@
 
 <header>
     <div class="container">
-        <h1>БИЛИМ ПЛАТФОРМАСЫ</h1>
-        <p>Сапаттуу билим — ийгиликтин ачкычы</p>
+        <div class="lang-switcher" style="text-align: right;">
+            <button onclick="changeLang('kg')">KG</button>
+            <button onclick="changeLang('ru')">RU</button>
+        </div>
+        
+        <h1 data-key="main-title">БИЛИМ ПЛАТФОРМАСЫ</h1>
+        <p data-key="sub-title">Сапаттуу билим — ийгиликтин ачкычы</p>
+        
         <nav>
-    <a href="matematika.html" class="nav-btn-link">Математика</a>
-    <a href="taryh.html" class="nav-btn-link">Тарых</a>
-    <a href="geografiya.html" class="nav-btn-link">География</a>
-    <a href="informatika.html" class="nav-btn-link">Информатика</a>
-</nav>
+            <a href="matematika.html" class="nav-btn-link" data-key="nav-math">Математика</a>
+            <a href="taryh.html" class="nav-btn-link" data-key="nav-history">Тарых</a>
+            <a href="geografiya.html" class="nav-btn-link" data-key="nav-geo">География</a>
+            <a href="informatika.html" class="nav-btn-link" data-key="nav-it">Информатика</a>
+        </nav>
     </div>
 </header>
 
 <main class="container">
-    <button onclick="speakText()" class="ai-button">🔊 Сабакты угуу</button>
+    <div style="margin: 20px 0;">
+        <button onclick="speakText()" class="ai-button" data-key="ai-btn">🔊 Сабакты угуу</button>
+    </div>
 
-<script src="script.js"></script>
     <section class="hero">
-        <h2>Кош келиңиздер!</h2>
-        <p>Биздин портал аркылуу сиз эң керектүү илимдерди акысыз жана кызыктуу түрдө үйрөнө аласыз.</p>
+        <h2 data-key="welcome-title">Кош келиңиздер!</h2>
+        <p data-key="welcome-desc">Биздин портал аркылуу сиз эң керектүү илимдерди акысыз жана кызыктуу түрдө үйрөнө аласыз.</p>
     </section>
 
     <section class="features" id="menu">
         <div class="info-card">
-            <h3>Китептер</h3>
-            <p>Биздин бардык электрондук китептер ушул жерде.</p>
-            <a href="library.html" class="read-btn">Китепканага кирүү</a>
+            <h3 data-key="card-books">Китептер</h3>
+            <p data-key="desc-books">Биздин бардык электрондук китептер ушул жерде.</p>
+            <a href="library.html" class="read-btn" data-key="btn-books">Китепканага кирүү</a>
         </div>
 
         <div class="info-card">
-            <h3>Тесттер</h3>
-            <p>Өз билимиңизди текшериңиз.</p>
-            <a href="test.html" class="read-btn">Тестти баштоо</a>
+            <h3 data-key="card-tests">Тесттер</h3>
+            <p data-key="desc-tests">Өз билимиңизди текшериңиз.</p>
+            <a href="test.html" class="read-btn" data-key="btn-tests">Тестти баштоо</a>
         </div>
 
         <div class="info-card">
-            <h3>Видео сабактар</h3>
-            <p>Тажрыйбалуу мугалимдерден видео түшүндүрмөлөр.</p>
-            <a href="video.html" class="read-btn">Видеолорду көрүү</a>
+            <h3 data-key="card-video">Видео сабактар</h3>
+            <p data-key="desc-video">Тажрыйбалуу мугалимдерден видео түшүндүрмөлөр.</p>
+            <a href="video.html" class="read-btn" data-key="btn-video">Видеолорду көрүү</a>
         </div>
     </section>
 </main>
 
 <footer>
-    <p>&copy; 2026 Билим Платформасы</p>
+    <p data-key="footer-text">&copy; 2026 Билим Платформасы</p>
 </footer>
+
+<script src="script.js"></script>
 
 </body>
 </html>
