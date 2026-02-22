@@ -152,7 +152,7 @@ footer {
         min-height: auto;
     }
 }
-}
+
 .quiz-box {
     text-align: left;
     background: #ffffff;
@@ -191,4 +191,16 @@ footer {
     border-radius: 10px;
     margin-top: 30px;
     border: 1px solid #ddd;
+}
+.back-link {
+    display: inline-block; /* Баскыч болушу үчүн маанилүү */
+    margin-top: 20px;      /* Жогорутан 20px боштук калтырат (ылдый түшүрөт) */
+    margin-bottom: 20px;   /* Тема (H1) менен арасын ачат */
+    color: #007bff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.back-link:hover {
+    text-decoration: underline; /* Чычканды алып барганда асты сызылат */
 }
