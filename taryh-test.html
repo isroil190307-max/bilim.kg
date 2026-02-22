@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="kg">
+<head>
+    <meta charset="UTF-8">
+    <title>Тарых Тести</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="test-card">
+            <h1 style="text-align: center;">📜 Тарых боюнча тест</h1>
+            <p style="text-align: center;">Туура жоопторду тандап, текшериңиз.</p>
+            <hr>
+
+            <div class="quiz-box">
+                <p><b>1. Кыргыздар жөнүндө эң алгачкы маалымат качан жазылган?</b></p>
+                <input type="radio" name="q1" value="0"> б.з.ч. 101-жыл <br>
+                <input type="radio" name="q1" value="1"> б.з.ч. 201-жыл <br>
+                <input type="radio" name="q1" value="0"> б.з.ч. 301-жыл
+            </div>
+
+            <div class="quiz-box">
+                <p><b>2. Бул маалыматты ким жазып калтырган?</b></p>
+                <input type="radio" name="q2" value="1"> Сыма Цянь <br>
+                <input type="radio" name="q2" value="0"> Геродот <br>
+                <input type="radio" name="q2" value="0"> Бартольд
+            </div>
+
+            <button onclick="checkResult()" class="read-btn" style="width: 100%; margin-top: 20px; font-size: 1.1rem;">Жыйынтыкты текшерүү</button>
+            
+            <p id="res-display" style="text-align: center; font-size: 1.5rem; font-weight: bold; margin-top: 20px;"></p>
+            
+            <div style="text-align: center; margin-top: 20px;">
+                <a href="taryh.html" class="nav-btn-link">← Менюга кайтуу</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function checkResult() {
+            let score = 0;
+            let q1 = document.querySelector('input[name="q1"]:checked');
+            let q2 = document.querySelector('input[name="q2"]:checked');
+
+            if (!q1 || !q2) {
+                alert("Сураныч, бардык суроолорго жооп бериңиз!");
+                return;
+            }
+
+            if (q1.value === "1") score++;
+            if (q2.value === "1") score++;
+
+            let display = document.getElementById('res-display');
+            display.innerText = "Сиздин упайыңыз: " + score + " / 2";
+            display.style.color = (score === 2) ? "#34a853" : "#ea4335";
+        }
+    </script>
+</body>
+</html>

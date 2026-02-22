@@ -152,6 +152,7 @@ footer {
         min-height: auto;
     }
 }
+}
 .quiz-box {
     text-align: left;
     background: #ffffff;
@@ -191,4 +192,3 @@ footer {
     margin-top: 30px;
     border: 1px solid #ddd;
 }
-
