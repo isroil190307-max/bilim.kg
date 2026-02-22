@@ -192,3 +192,22 @@ footer {
     margin-top: 30px;
     border: 1px solid #ddd;
 }
+/* AI баскычынын дизайны */
+.ai-button {
+    background-color: #28a745; /* Жашыл түс */
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    margin: 20px 0;
+    display: block;
+    transition: 0.3s;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.ai-button:hover {
+    background-color: #218838; /* Чычканды алып барганда караңгылайт */
+    transform: scale(1.05); /* Бир аз чоңоёт */
+}
