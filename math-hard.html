@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ky">
+<head>
+    <meta charset="UTF-8">
+    <title>Татаал Тест - Пароль менен</title>
+    <style>
+        body { font-family: Arial, sans-serif; background-color: #f4f4f9; padding: 20px; text-align: center; }
+        
+        /* ПАРОЛЬ БӨЛҮМҮ */
+        #lock-screen { 
+            background: white; padding: 30px; border-radius: 15px; 
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2); 
+            max-width: 400px; margin: 50px auto; 
+        }
+        input[type="text"] { width: 80%; padding: 10px; margin: 15px 0; border: 1px solid #ccc; border-radius: 5px; font-size: 18px; text-align: center; }
+        .btn-unlock { background: #28a745; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; font-size: 16px; font-weight: bold; }
+        
+        /* ТЕСТТИН ӨЗҮ (Башында жашыруун) */
+        #test-content { 
+            display: none; /* БУЛ ЖЕР МААНИЛҮҮ */
+            background: white; padding: 30px; border-radius: 15px; 
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1); 
+            max-width: 600px; margin: 20px auto; text-align: left;
+        }
+        .question { margin-bottom: 20px; padding: 10px; border-bottom: 1px solid #eee; }
+        .payment-info { font-size: 14px; color: #555; margin-top: 20px; border-top: 1px solid #eee; padding-top: 15px; }
+    </style>
+</head>
+<body>
+
+    <div id="lock-screen">
+        <h2 style="color: #e67e22;">🔐 Тест жабык</h2>
+        <p>Бул татаал тестти ачуу үчүн пароль киргизиңиз.</p>
+        <input type="text" id="passwordInput" placeholder="Паролду жазыңыз">
+        <br>
+        <button class="btn-unlock" onclick="checkPassword()">Тестти ачуу</button>
+
+        <div class="payment-info">
+            <p><b>Паролду кантип алат?</b></p>
+            <p>МБанк: <b>+996 XXX XX XX XX</b> (50 сом)</p>
+        </div>
+    </div>
+
+    <div id="test-content">
+        <h2 style="color: #e67e22; text-align: center;">📐 Математика: Татаал деңгээл</h2>
+        <hr>
+        
+        <div class="question">
+            <p><b>1. Эгерде x² + y² = 25 жана xy = 12 болсо, (x + y)² канчага барабар?</b></p>
+            <input type="radio" name="q1" id="q1a"> <label for="q1a">37</label><br>
+            <input type="radio" name="q1" id="q1b"> <label for="q1b">49</label><br>
+            <input type="radio" name="q1" id="q1c"> <label for="q1c">61</label>
+        </div>
+
+        <div class="question">
+            <p><b>2. Тегеректин аянты 4 эсе чоңойсо, анын айланасынын узундугу канча эсе чоңоёт?</b></p>
+            <input type="radio" name="q2" id="q2a"> <label for="q2a">2 эсе</label><br>
+            <input type="radio" name="q2" id="q2b"> <label for="q2b">4 эсе</label><br>
+            <input type="radio" name="q2" id="q2c"> <label for="q2c">16 эсе</label>
+        </div>
+
+        <button onclick="finishTest()" style="width: 100%; padding: 15px; background: #e67e22; color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: bold;">Жыйынтыкты текшерүү</button>
+        <div id="test-result" style="margin-top: 20px; text-align: center; font-weight: bold; font-size: 20px; color: #28a745;"></div>
+    </div>
+
+    <script>
+        function checkPassword() {
+            var pass = document.getElementById('passwordInput').value;
+            var correctPass = "5555"; 
+
+            if (pass === correctPass) {
+                // ПАРОЛЬ ТУУРА БОЛСО:
+                document.getElementById('lock-screen').style.display = 'none'; // Жабуу
+                document.getElementById('test-content').style.display = 'block'; // Ачуу
+            } else {
+                alert("Ката пароль! Кайра аракет кылыңыз.");
+            }
+        }
+
+        function finishTest() {
+            var score = 0;
+            // Жөнөкөй текшерүү
+            if (document.getElementById('q1b').checked) score++;
+            if (document.getElementById('q2a').checked) score++;
+
+            document.getElementById('test-result').innerHTML = "Сиздин жыйынтык: " + score + " / 2 упай!";
+        }
+    </script>
+
+</body>
+</html>
