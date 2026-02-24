@@ -63,7 +63,19 @@
         </div>
     </section>
 </main>
-
+<section class="features" style="margin-top: 20px;">
+    <div class="info-card" style="border: 2px solid #007bff; background: #f0f7ff;">
+        <h3 style="color: #007bff;">Жеке кабинет (Python)</h3>
+        <p>Сервер аркылуу өз атыңызды каттаңыз:</p>
+        <form action="http://127.0.0.1:8000/welcome" method="POST">
+            <input type="text" name="user_name" placeholder="Атыңыз..." required 
+                   style="width: 80%; padding: 10px; margin-bottom: 10px; border-radius: 5px; border: 1px solid #ccc;">
+            <button type="submit" class="read-btn" style="background-color: #007bff; cursor: pointer;">
+                Серверге кирүү
+            </button>
+        </form>
+    </div>
+</section>
 <div style="text-align: center; margin: 30px 0;">
     <h3 data-key="contact-title">Суроолор боюнча жеке жардам:</h3>
     <a href="https://wa.me/996508713717" class="read-btn" style="background-color: #25D366; border-color: #25D366; color: white; text-decoration: none; padding: 10px 20px; border-radius: 5px; display: inline-block;">
