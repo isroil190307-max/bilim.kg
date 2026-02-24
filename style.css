@@ -231,3 +231,17 @@ footer {
     background-color: #007bff;
     color: #fff;
 }
+/* Түнкү режим үчүн атайын стиль */
+body.dark-theme {
+    background-color: #1a1a1a;
+    color: #272222;
+}
+body.dark-theme header {
+    background-color: #1f1f1f !important;
+    border-bottom: 1px solid #333;
+}
+
+body.dark-theme .info-card {
+    background-color: #242424 !important;
+    color: white !important;
+}

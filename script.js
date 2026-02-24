@@ -1,4 +1,4 @@
-// 1. ӨЗГӨРМӨЛӨР (Башында бир эле жолу жазылат)
+// 1. ӨЗГӨРМӨЛӨР
 let isSpeaking = false;
 
 // 2. КОТОРМОЛОР СӨЗДҮГҮ
@@ -51,21 +51,18 @@ const translations = {
 function speakText() {
     const button = document.querySelector(".ai-button");
 
-    // Эгер азыр сүйлөп жаткан болсо - токтотобуз
     if (window.speechSynthesis.speaking && isSpeaking) {
         window.speechSynthesis.cancel();
         isSpeaking = false;
-        // Тилге жараша кайра жазуу
         const currentLang = document.documentElement.lang || 'kg';
         button.innerText = translations[currentLang]['ai-btn'];
         return;
     }
 
-    // Окула турган текстти алуу
     let content = document.body.innerText;
     let speech = new SpeechSynthesisUtterance(content);
     
-    speech.lang = 'ru-RU'; // Орусча үн кыргызчага окшошураак
+    speech.lang = 'ru-RU'; 
     speech.rate = 1.0;
 
     speech.onstart = () => {
@@ -85,9 +82,7 @@ function speakText() {
 
 // 4. ТИЛ КОТОРУУ ФУНКЦИЯСЫ
 function changeLang(lang) {
-    console.log("Тил алмашты: " + lang);
-    document.documentElement.lang = lang; // Сайттын тилин белгилөө
-
+    document.documentElement.lang = lang; 
     const elements = document.querySelectorAll('[data-key]');
     elements.forEach(el => {
         const key = el.getAttribute('data-key');
@@ -96,3 +91,26 @@ function changeLang(lang) {
         }
     });
 }
+
+// 5. ТҮНКҮ РЕЖИМ (DARK MODE) ФУНКЦИЯСЫ
+function toggleDarkMode() {
+    document.body.classList.toggle('dark-theme');
+    const btn = document.getElementById('dark-mode-btn');
+    const isDark = document.body.classList.contains('dark-theme');
+    
+    localStorage.setItem('theme', isDark ? 'dark' : 'light');
+    
+    if (btn) {
+        btn.innerText = isDark ? "☀️ Жарык режим" : "🌙 Караңгы режим";
+    }
+}
+
+// 6. БАРАКЧА ЖҮКТӨЛГӨНДӨ ТЕКШЕРҮҮ
+window.addEventListener('DOMContentLoaded', () => {
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'dark') {
+        document.body.classList.add('dark-theme');
+        const btn = document.getElementById('dark-mode-btn');
+        if (btn) btn.innerText = "☀️ Жарык режим";
+    }
+});

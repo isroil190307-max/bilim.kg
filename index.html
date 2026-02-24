@@ -9,6 +9,7 @@
 <body>
 
 <header>
+    <button onclick="toggleDarkMode()" id="dark-mode-btn" style="padding: 5px 10px; cursor: pointer; border-radius: 5px; border: 1px solid #ccc;">🌙 Караңгы режим</button>
     <div class="container">
         <div class="lang-switcher" style="text-align: right;">
             <button onclick="changeLang('kg')">KG</button>
@@ -119,6 +120,27 @@ var sc_security="d435eee0";
         </a>
     </div>
 </noscript>
+<script>
+    // Бул JavaScript коду
+    function dynamicGreeting() {
+        const hour = new Date().getHours(); // Учурдагы саатты алуу
+        let message = "";
+
+        if (hour < 12) {
+            message = "Кутман таң! Окууга даярсызбы? 👋";
+        } else if (hour < 18) {
+            message = "Кутман күн! Билим алууну улантабыз! 📚";
+        } else {
+            message = "Кутман кеч! Бүгүнкү ийгиликтериңиз кандай? ✨";
+        }
+
+        // Сайтыңыздагы "welcome-desc" деген текстти өзгөртөбүз
+        document.querySelector('[data-key="welcome-desc"]').innerText = message;
+    }
+
+    // Баракча ачылганда функцияны иштетүү
+    window.onload = dynamicGreeting;
+</script>
 
 </body>
 </html>
