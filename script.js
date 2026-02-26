@@ -92,42 +92,45 @@ function changeLang(lang) {
     });
 }
 
-// 5. ТҮНКҮ РЕЖИМ (DARK MODE) ФУНКЦИЯСЫ
+// 5. ТҮНКҮ РЕЖИМ ФУНКЦИЯСЫ
 function toggleDarkMode() {
-    document.body.classList.toggle('dark-theme');
+    // Классты алмаштыруу
+    const isDark = document.body.classList.toggle('dark-theme');
     const btn = document.getElementById('dark-mode-btn');
-    const isDark = document.body.classList.contains('dark-theme');
     
+    // Тандоону сактап коюу
     localStorage.setItem('theme', isDark ? 'dark' : 'light');
     
+    // Баскычтын текстин алмаштыруу
     if (btn) {
         btn.innerText = isDark ? "☀️ Жарык режим" : "🌙 Караңгы режим";
     }
 }
 
-// 6. БАРАКЧА ЖҮКТӨЛГӨНДӨ ТЕКШЕРҮҮ
+// 6. ПАРОЛЬ ТЕКШЕРҮҮ
+function checkPassword() {
+    let input = prompt("🔐 Бул жабык курс. Кирүү үчүн паролду жазыңыз:");
+    let correctPassword = "2007"; 
+
+    if (input === correctPassword) {
+        alert("Пароль туура! Куш келиңиз.");
+        document.body.style.display = "block"; 
+    } else {
+        alert("Ката! Сизге кирүүгө уруксат берилген жок.");
+        window.location.href = "index.html"; 
+    }
+}
+
+// 7. БАРАКЧА ЖҮКТӨЛГӨНДӨ БААРЫН ТЕКШЕРҮҮ
 window.addEventListener('DOMContentLoaded', () => {
+    // Караңгы режимди текшерүү
     const savedTheme = localStorage.getItem('theme');
     if (savedTheme === 'dark') {
         document.body.classList.add('dark-theme');
         const btn = document.getElementById('dark-mode-btn');
         if (btn) btn.innerText = "☀️ Жарык режим";
     }
-});
-<script>
-    function checkPassword() {
-        // Колдонуучу жазган сөз 'input' өзгөрмөсүнө сакталат
-        var input = prompt("🔐 Бул жабык курс. Кирүү үчүн паролду жазыңыз:");
-        
-        // Сиздин паролуңуз
-        var correctPassword = "2007"; 
 
-        if (input === correctPassword) {
-            alert("Пароль туура! Куш келиңиз.");
-            document.body.style.display = "block"; // Баракчаны көрсөтүү
-        } else {
-            alert("Ката! Сизге кирүүгө уруксат берилген жок.");
-            window.location.href = "index.html"; // Башкы бетке кайтаруу
-        }
-    }
-</script>
+    // Паролду чакыруу (Эгер баракча демейкиде display: none болсо)
+    // checkPassword(); 
+});
