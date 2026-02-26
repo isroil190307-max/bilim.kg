@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="ky">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Тез Эсепте - Математикалык Оюн</title>
+    <style>
+        body { 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            text-align: center; 
+            background: #eef2f3; 
+            padding-top: 50px; 
+            margin: 0;
+        }
+        .game-card { 
+            background: white; 
+            padding: 30px; 
+            border-radius: 25px; 
+            display: inline-block; 
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1); 
+            width: 380px;
+            transition: 0.3s;
+        }
+        h1 { color: #2c3e50; margin-bottom: 10px; }
+        #question { 
+            font-size: 50px; 
+            margin: 25px 0; 
+            color: #2c3e50; 
+            font-weight: bold; 
+            min-height: 60px;
+        }
+        input { 
+            padding: 12px; 
+            font-size: 28px; 
+            width: 140px; 
+            border-radius: 12px; 
+            border: 3px solid #3498db; 
+            text-align: center; 
+            outline: none;
+            transition: 0.2s;
+        }
+        .stats { 
+            display: flex; 
+            justify-content: space-around; 
+            font-size: 20px; 
+            margin-bottom: 20px;
+            padding: 10px;
+            background: #f8f9fa;
+            border-radius: 15px;
+        }
+        .score { color: #27ae60; font-weight: bold; }
+        .timer { color: #e74c3c; font-weight: bold; }
+        button { 
+            padding: 15px 30px; 
+            background: #3498db; 
+            color: white; 
+            border: none; 
+            border-radius: 12px; 
+            cursor: pointer; 
+            font-size: 20px;
+            font-weight: bold;
+            box-shadow: 0 4px 10px rgba(52, 152, 219, 0.3);
+        }
+        button:hover { background: #2980b9; }
+        button:disabled { background: #bdc3c7; cursor: not-allowed; box-shadow: none; }
+        .back-link {
+            margin-top: 25px;
+            display: block;
+            text-decoration: none;
+            color: #7f8c8d;
+            font-weight: 500;
+        }
+        .back-link:hover { color: #2c3e50; }
+    </style>
+</head>
+<body>
+
+<div class="game-card">
+    <h1>Тез Эсепте!</h1>
+    
+    <div class="stats">
+        <div class="timer">⏳ Убакыт: <span id="time">30</span>с</div>
+        <div class="score">🏆 Упай: <span id="score">0</span></div>
+    </div>
+    
+    <div id="question">Даярсызбы?</div>
+    
+    <input type="number" id="userAnswer" placeholder="?" onkeyup="checkEnter(event)" disabled>
+    <br><br>
+    
+    <button onclick="startGame()" id="startBtn">Оюнду баштоо</button>
+    <br><br>
+    <a href="matematika.html" class="back-link">⬅️ Математика бөлүмүнө кайтуу</a>
+</div>
+
+<script>
+    let currentAnswer;
+    let score = 0;
+    let timeLeft = 30;
+    let timerInterval;
+    let gameActive = false;
+
+    const questionEl = document.getElementById('question');
+    const answerInput = document.getElementById('userAnswer');
+    const scoreEl = document.getElementById('score');
+    const timeEl = document.getElementById('time');
+    const startBtn = document.getElementById('startBtn');
+
+    function startGame() {
+        score = 0;
+        timeLeft = 30;
+        gameActive = true;
+        
+        scoreEl.innerText = score;
+        timeEl.innerText = timeLeft;
+        answerInput.disabled = false;
+        startBtn.disabled = true;
+        answerInput.focus();
+        
+        nextQuestion();
+        
+        clearInterval(timerInterval);
+        timerInterval = setInterval(() => {
+            timeLeft--;
+            timeEl.innerText = timeLeft;
+            
+            if (timeLeft <= 0) {
+                endGame();
+            }
+        }, 1000);
+    }
+
+    function nextQuestion() {
+        if (!gameActive) return;
+        
+        // 1ден 20га чейинки сандар
+        let n1 = Math.floor(Math.random() * 20) + 1;
+        let n2 = Math.floor(Math.random() * 20) + 1;
+        currentAnswer = n1 + n2;
+        
+        questionEl.innerText = `${n1} + ${n2} = ?`;
+        answerInput.value = "";
+        answerInput.style.backgroundColor = "white";
+        answerInput.focus();
+    }
+
+    function checkAnswer() {
+        if (!gameActive || answerInput.value === "") return;
+        
+        let val = parseInt(answerInput.value);
+        
+        if (val === currentAnswer) {
+            score++;
+            answerInput.style.backgroundColor = "#d4edda"; // Туура болсо жашыл
+        } else {
+            // Ката болсо упай кемитилбейт (же кааласаңыз score-- кылсаңыз болот)
+            answerInput.style.backgroundColor = "#f8d7da"; // Ката болсо кызыл
+        }
+        
+        scoreEl.innerText = score;
+
+        // Жооп кандай болбосун 0.2 секунддан кийин кийинки суроого өтөт
+        setTimeout(nextQuestion, 200);
+    }
+
+    function checkEnter(event) {
+        if (event.key === "Enter") {
+            checkAnswer();
+        }
+    }
+
+    function endGame() {
+        gameActive = false;
+        clearInterval(timerInterval);
+        answerInput.disabled = true;
+        startBtn.disabled = false;
+        startBtn.innerText = "Кайра баштоо";
+        questionEl.innerText = "Убакыт бүттү!";
+        
+        // Оюн бүткөндө гана жыйынтыкты чыгаруу
+        setTimeout(() => {
+            alert("Оюн бүттү! Сиздин жалпы упайыңыз: " + score);
+        }, 100);
+    }
+</script>
+
+</body>
+</html>

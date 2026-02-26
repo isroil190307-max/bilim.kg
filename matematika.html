@@ -41,50 +41,16 @@
             <a href="math-test.html" style="background-color: #ffc107; color: black; padding: 15px 30px; text-decoration: none; border-radius: 10px; font-weight: bold; display: inline-block; border: 2px solid #e0a800;">
                 📝 Өзүнчө баракта тестти баштоо
             </a>
-        </section>
-
-        <div class="test-container">
-            <h2 class="subject-title">📕 Өзүңдү текшерүү</h2>
-            
-            <div class="quiz-box">
-                <p><b>1. 5 * 5 + 5 канча болот?</b></p>
-                <input type="radio" name="m1" id="m1_1" value="0"> <label for="m1_1">25</label><br>
-                <input type="radio" name="m1" id="m1_2" value="1"> <label for="m1_2">30</label><br>
-                <input type="radio" name="m1" id="m1_3" value="0"> <label for="m1_3">35</label>
-            </div>
-
-            <div class="quiz-box">
-                <p><b>2. 100дүн жарымы канча?</b></p>
-                <input type="radio" name="m2" id="m2_1" value="1"> <label for="m2_1">50</label><br>
-                <input type="radio" name="m2" id="m2_2" value="0"> <label for="m2_2">40</label><br>
-                <input type="radio" name="m2" id="m2_3" value="0"> <label for="m2_3">60</label>
-            </div>
-
-            <div class="button-section" style="text-align: center;">
-                <button onclick="checkMath()" class="check-btn">Жыйынтыкты текшерүү</button>
-                <p id="math-result"></p>
-            </div>
-        </div>
+        
     </main>
+    
+ <section class="game-link" style="text-align: center; margin-top: 20px; margin-bottom: 50px;">
+    <p>Мээни машыктырууну каалайсызбы? 🧠</p>
+    <a href="mathplay.html" style="background-color: #28a745; color: white; padding: 15px 30px; text-decoration: none; border-radius: 10px; font-weight: bold; display: inline-block; border: 2px solid #1e7e34; box-shadow: 0 4px 10px rgba(0,0,0,0.1);">
+        🎮 Математикалык оюнду баштоо
+    </a>
+</section>
 
-    <script>
-    function checkMath() {
-        let score = 0;
-        let q1 = document.querySelector('input[name="m1"]:checked');
-        let q2 = document.querySelector('input[name="m2"]:checked');
 
-        if (q1 && q1.value === "1") score++;
-        if (q2 && q2.value === "1") score++;
-
-        let resultElement = document.getElementById('math-result');
-        if (q1 == null || q2 == null) {
-            resultElement.style.color = "red";
-            resultElement.innerText = "Сураныч, бардык суроолорго жооп бериңиз!";
-        } else {
-            resultElement.style.color = "blue";
-            resultElement.innerText = "Сиздин жыйынтык: " + score + " / 2";
-        }
-    }
-    </script>
 </body>
 </html>
