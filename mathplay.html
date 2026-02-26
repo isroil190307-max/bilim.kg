@@ -72,6 +72,15 @@
         }
         .back-link:hover { color: #2c3e50; }
     </style>
+  <script>
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('sw.js')
+        .then(reg => console.log('PWA ийгиликтүү катталды!', reg.scope))
+        .catch(err => console.log('Каттоодо ката кетти:', err));
+    });
+  }
+</script>
 </head>
 <body>
 

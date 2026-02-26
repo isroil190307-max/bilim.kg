@@ -5,6 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Билим Платформасы</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="manifest" href="manifest.json">
+
+<script>
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('sw.js')
+        .then(reg => console.log('PWA ийгиликтүү катталды!', reg.scope))
+        .catch(err => console.log('Каттоодо ката кетти:', err));
+    });
+  }
+</script>
+<link rel="apple-touch-icon" href="https://cdn-icons-png.flaticon.com/512/5351/5351486.png">
 </head>
 <body>
 

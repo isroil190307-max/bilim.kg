@@ -11,6 +11,15 @@
         .check-btn { background-color: #28a745; color: white; padding: 12px 25px; border: none; border-radius: 5px; cursor: pointer; font-size: 16px; }
         #math-result { font-weight: bold; margin-top: 15px; font-size: 18px; }
     </style>
+    <script>
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('sw.js')
+        .then(reg => console.log('PWA ийгиликтүү катталды!', reg.scope))
+        .catch(err => console.log('Каттоодо ката кетти:', err));
+    });
+  }
+</script>
 </head>
 <body>
     <header>

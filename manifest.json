@@ -1,0 +1,15 @@
+{
+  "name": "Математикалык Оюн",
+  "short_name": "MathGame",
+  "start_url": "index.html",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#3498db",
+  "icons": [
+    {
+      "src": "https://cdn-icons-png.flaticon.com/512/5351/5351486.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
