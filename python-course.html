@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="kg">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python Профессионалдык Курсу</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto:wght@300;400&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary-color: #3776ab; /* Python көк түсү */
+            --secondary-color: #ffd43b; /* Python сары түсү */
+            --dark-bg: #1e1e2e;
+            --text-white: #ffffff;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f7f6;
+            display: none; /* Пароль жазгыча жашыруун болот */
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--dark-bg), var(--primary-color));
+            color: white;
+            padding: 60px 20px;
+            text-align: center;
+            border-bottom: 5px solid var(--secondary-color);
+        }
+
+        .container {
+            max-width: 900px;
+            margin: -40px auto 40px;
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+        }
+
+        .lesson-badge {
+            background: var(--secondary-color);
+            color: #333;
+            padding: 5px 15px;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        h1 { font-family: 'Montserrat', sans-serif; margin-bottom: 10px; }
+
+        .video-box {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 катышы */
+            height: 0;
+            margin: 30px 0;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+
+        .video-box iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .materials {
+            background: #f9f9f9;
+            border-left: 5px solid var(--primary-color);
+            padding: 20px;
+            border-radius: 8px;
+        }
+
+        .btn-back {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 12px 25px;
+            background: var(--primary-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: 0.3s;
+        }
+
+        .btn-back:hover { opacity: 0.9; transform: translateY(-2px); }
+    </style>
+
+    <script>
+        function checkPassword() {
+            var password = prompt("🔐 Бул жабык курс. Кирүү үчүн паролду жазыңыз:");
+            var correctPassword = "2007"; // Өзүңүздүн паролду ушул жерге жазыңыз
+
+            if (password === correctPassword) {
+                document.body.style.display = "block";
+            } else {
+                alert("Ката! Сизге кирүүгө уруксат берилген жок.");
+                window.location.href = "index.html";
+            }
+        }
+    </script>
+</head>
+<body onload="checkPassword()">
+
+<header>
+    <h1 style="font-size: 2.5em;">🐍 Python Программалоо</h1>
+    <p>Нөлдөн баштап профессионалга чейин</p>
+</header>
+
+<main class="container">
+    <span class="lesson-badge">1-САБАК</span>
+    <h2 style="color: #2c3e50; margin-top: 15px;">Python-го киришүү жана орнотуу</h2>
+    
+    <p style="color: #555; line-height: 1.6;">
+        Бул сабакта биз Python тилинин мүмкүнчүлүктөрү менен таанышабыз жана керектүү программаларды (VS Code, Python Interpreter) орнотобуз.
+    </p>
+
+    <div class="video-box">
+        <iframe src="https://www.youtube.com/embed/m7vDqR7XInI" allowfullscreen></iframe>
+    </div>
+
+    <div class="materials">
+        <h3>📚 Сабактын материалдары:</h3>
+        <ul>
+            <li>Python 3.x орнотуу боюнча колдонмо (PDF)</li>
+            <li>Биринчи "Hello World" кодунун үлгүсү</li>
+            <li>Үй тапшырмасы: Өзгөрмөлөрдү түзүү</li>
+        </ul>
+    </div>
+
+    <div style="text-align: center;">
+        <a href="index.html" class="btn-back">← Башкы бетке кайтуу</a>
+    </div>
+</main>
+
+<footer style="text-align: center; color: #888; padding-bottom: 20px;">
+    <p>&copy; 2026 Билим Платформасы | Бардык укуктар корголгон.</p>
+</footer>
+
+</body>
+</html>
