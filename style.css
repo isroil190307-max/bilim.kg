@@ -77,6 +77,7 @@ nav {
     margin-bottom: 40px;
 }
 
+
 .info-card {
     background: #ffffff;
     flex: 1;
@@ -104,253 +105,456 @@ nav {
     transition: 0.3s;
 }
 
-.read-btn:hover {
-    background: #34495e;
-}
-
-/* Китепкана бөлүмү */
-.library-section {
-    background: rgba(255, 255, 255, 0.9);
-    padding: 30px;
-    margin-top: 20px;
-    border-radius: 15px;
-    text-align: center;
-}
-
-.library-grid {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    justify-content: center;
-    margin-top: 20px;
-}
-
-.book-card {
-    background: white;
+.comment-section {
+    max-width: 500px;
+    margin: 20px auto;
     padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    width: 250px;
-    border-top: 5px solid #27ae60;
+    font-family: sans-serif;
 }
 
-/* Футер */
-footer {
-    background: #2c3e50;
+/* Ар бир элементти өзүнчө сапка түшүрүү */
+.input-group {
+    display: flex;
+    flex-direction: column; /* Элементтерди вертикалдуу тизет */
+    gap: 15px; /* Аралыктарын бирдей кылат */
+    margin-bottom: 40px;
+}
+
+.input-group input, 
+.input-group textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 16px;
+    box-sizing: border-box; /* Ички талааларды туура эсептейт */
+}
+
+.input-group button {
+    padding: 12px;
+    background-color: #007bff;
     color: white;
-    text-align: center;
-    padding: 20px 0;
-    margin-top: 30px;
-}
-
-/* Мобилдик версия */
-@media(max-width: 768px) {
-    .features {
-        flex-direction: column;
-    }
-    .info-card {
-        min-height: auto;
-    }
-}
-
-.quiz-box {
-    text-align: left;
-    background: #ffffff;
-    padding: 15px;
-    margin-bottom: 20px; /* Суроолордун ортосундагы боштук */
-    border-radius: 8px;
-    border-left: 4px solid #007bff;
-}
-
-.button-section {
-    margin-top: 30px; /* Баскычты суроолордон алыстатат */
-    padding-bottom: 50px;
-}
-
-.check-btn {
-    background-color: #28a745;
-    color: white;
-    padding: 12px 25px;
     border: none;
-    border-radius: 5px;
+    border-radius: 6px;
     cursor: pointer;
     font-size: 16px;
-    display: block; /* Баскычты өзүнчө сапка чыгарат */
-    margin: 0 auto; /* Ортого коёт */
-}
-
-#math-result {
-    margin-top: 15px;
-    font-size: 18px;
-    color: #007bff;
     font-weight: bold;
 }
-.quiz-section {
-    background-color: #f9f9f9;
-    padding: 20px;
-    border-radius: 10px;
-    margin-top: 30px;
-    border: 1px solid #ddd;
-}
-/* AI баскычынын дизайны */
-.ai-button {
-    background-color: #28a745; /* Жашыл түс */
-    color: white;
-    padding: 12px 20px;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    font-size: 16px;
-    margin: 20px 0;
-    display: block;
-    transition: 0.3s;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+
+.input-group button:hover {
+    background-color: #0056b3;
 }
 
-.ai-button:hover {
-    background-color: #218838; /* Чычканды алып барганда караңгылайт */
-    transform: scale(1.05); /* Бир аз чоңоёт */
+/* Тизме бөлүгү */
+.display-section h3 {
+    border-top: 2px solid #eee;
+    padding-top: 20px;
+    margin-bottom: 15px;
 }
-.lang-menu {
-    text-align: right; /* Баскычтарды оң жакка коёт */
+
+#comments-list {
+    list-style: none;
+    padding: 0;
+}
+
+#comments-list li {
+    background: #f9f9f9;
+    padding: 15px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    border: 1px solid #eee;
+}
+/* Каттоо баракчасын экрандын ортосуна келтирүү */
+.auth-page {
+    display: flex;
+    justify-content: center; /* Горизонталдуу ортого */
+    align-items: center;     /* Вертикалдуу ортого */
+    width: 100%;
+    min-height: 100vh;       /* Экрандын толук бийиктиги */
+    background: linear-gradient(135deg, #20826e 0%, #1b5e13 100%);
+    margin: 0;
+    padding: 20px;           /* Мобилдик телефондордо четтерине жабышып калбашы үчүн */
+    box-sizing: border-box;
+}
+
+/* Картанын өзүн бир аз эффект менен кооздоо */
+.auth-card {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(15px);
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+    width: 100%;
+    max-width: 400px;
+    border: 1px solid rgba(65, 196, 35, 0.1);
+    text-align: center;
+    animation: fadeIn 0.8s ease; /* Киргенде жай пайда болуу эффекти */
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}.main-menu {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 20px;
+    flex-wrap: wrap;
+}
+
+.main-menu a {
+    text-decoration: none;
+    color: white;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 8px 15px;
+    border-radius: 20px;
+    font-size: 14px;
+    transition: 0.3s;
+}
+
+.main-menu a:hover, .main-menu a.active {
+    background: #4facfe;
+    color: white;
+}
+
+.top-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+}
+.main-menu {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 20px;
+    flex-wrap: wrap;
+}
+
+.main-menu a {
+    text-decoration: none;
+    color: white;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 8px 15px;
+    border-radius: 20px;
+    font-size: 14px;
+    transition: 0.3s;
+}
+
+.main-menu a:hover, .main-menu a.active {
+    background: #4facfe;
+    color: white;
+}
+
+.top-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+}
+/* Кирүү барагынын дизайны */
+.auth-body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: #f4f7f6; /* Жеңил боз түс */
+    margin: 0;
+}
+
+.auth-container {
+    background: white;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    width: 100%;
+    max-width: 380px;
+    text-align: center;
+}
+
+.auth-container h2 {
+    color: #333;
+    margin-bottom: 5px;
+}
+
+.auth-input-group {
+    text-align: left;
+    margin-top: 15px;
+}
+
+.auth-input-group label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+    font-size: 14px;
+}
+
+.auth-input-group input {
+    width: 100%;
+    padding: 10px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    box-sizing: border-box;
+}
+
+.auth-buttons {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.btn-auth {
+    flex: 1;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 16px;
+    transition: 0.2s;
+}
+
+.btn-login {
+    background-color: #4facfe;
+    color: white;
+}
+
+.btn-signup {
+    background-color: #ffc107; /* Сиздин сары түс */
+    color: black;
+}
+
+.btn-auth:hover {
+    transform: scale(1.02);
+}
+
+.back-home-link {
+    display: block;
+    margin-top: 20px;
+    text-decoration: none;
+    color: #197e40;
+    font-size: 14px;
+}
+/* --- ЗОР ДИЗАЙН (Glassmorphism) --- */
+.auth-page {
+    background: linear-gradient(45deg, #0f2027, #203a43, #2c5364); /* Космикалык фон */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.glass-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+}
+
+.auth-box {
+    background: rgba(255, 255, 255, 0.1); /* Тунук ак */
+    backdrop-filter: blur(15px); /* Айнектей мунарыктоо */
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 40px;
+    border-radius: 25px;
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+    color: white;
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+}
+
+.logo-icon {
+    font-size: 50px;
+    display: block;
     margin-bottom: 10px;
 }
 
-.lang-menu button {
-    background-color: #fff;
-    border: 1px solid #007bff;
-    color: #007bff;
-    padding: 5px 10px;
-    cursor: pointer;
-    border-radius: 4px;
-    font-weight: bold;
-    margin-left: 5px;
+.auth-subtitle {
+    opacity: 0.8;
+    margin-bottom: 30px;
+    font-size: 15px;
 }
 
-.lang-menu button:hover {
-    background-color: #007bff;
-    color: #fff;
-}
-/* Түнкү режим үчүн атайын стиль */
-body.dark-theme {
-    background-color: #1a1a1a;
-    color: #272222;
-}
-body.dark-theme header {
-    background-color: #1f1f1f !important;
-    border-bottom: 1px solid #333;
+.input-wrapper {
+    margin-bottom: 20px;
 }
 
-body.dark-theme .info-card {
-    background-color: #242424 !important;
-    color: white !important;
-}
-/* --- ТҮНКҮ РЕЖИМДИН ТОЛУК ЖАНА ТАЗА КӨЧҮРМӨСҮ --- */
-
-/* 1. Негизги фон жана текст */
-body.dark-theme {
-    background-color: #121212 !important;
-    background-image: none !important; /* Сүрөттү алып салат */
-    color: #e0e0e0 !important;
-}
-
-/* 2. Шапка (Header) */
-body.dark-theme header {
-    background: #1a1a1a !important;
-    border-bottom: #27ae60 5px solid !important;
-}
-
-/* 3. Бардык ак карточкалар жана бөлүмдөр */
-body.dark-theme .hero, 
-body.dark-theme .info-card, 
-body.dark-theme .library-section, 
-body.dark-theme .book-card,
-body.dark-theme .quiz-box,
-body.dark-theme .quiz-section {
-    background-color: #1e1e1e !important;
-    color: #ffffff !important;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.5) !important;
-    border-color: #333 !important;
-}
-
-/* 4. Тексттин түстөрүн мажбурлап ак кылуу */
-body.dark-theme h1, 
-body.dark-theme h2, 
-body.dark-theme h3, 
-body.dark-theme h4,
-body.dark-theme p,
-body.dark-theme span,
-body.dark-theme div {
-    color: #ffffff !important;
-}
-
-/* 5. Баскычтар жана меню */
-body.dark-theme .lang-menu button {
-    background-color: #2c3e50 !important;
-    color: #fff !important;
-    border-color: #444 !important;
-}
-
-body.dark-theme .read-btn {
-    background: #34495e !important;
-}
-
-/* 6. Тесттин суроолору */
-body.dark-theme .quiz-box {
-    border-left: 4px solid #27ae60 !important;
-}
-/* --- ОЮН ТАЛААСЫ ҮЧҮН АТАЙЫН СТИЛДЕР --- */
-.game-card {
-    background: white;
-    padding: 40px;
-    border-radius: 20px;
-    box-shadow: 0 15px 35px rgba(0,0,0,0.1);
-    display: inline-block;
+.input-wrapper input {
     width: 100%;
-    max-width: 400px;
-    margin-top: 50px;
-    text-align: center;
-}
-
-#question {
-    font-size: 55px; /* Суроо чоң жана даана көрүнөт */
-    font-weight: bold;
-    color: #2c3e50;
-    margin: 20px 0;
-}
-
-#userAnswer {
-    width: 150px;
-    height: 60px;
-    font-size: 30px;
-    text-align: center;
-    border: 3px solid #27ae60;
+    padding: 14px;
     border-radius: 12px;
+    border: none;
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    font-size: 16px;
     outline: none;
     transition: 0.3s;
 }
 
-#userAnswer:focus {
-    border-color: #3498db;
-    box-shadow: 0 0 10px rgba(52, 152, 219, 0.3);
+.input-wrapper input::placeholder {
+    color: rgba(255, 255, 255, 0.6);
 }
 
-.stats-container {
+.input-wrapper input:focus {
+    background: rgba(255, 255, 255, 0.3);
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+}
+
+.auth-btns {
     display: flex;
-    justify-content: space-around;
-    font-size: 20px;
-    margin-bottom: 20px;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.login-btn {
+    background: #4facfe;
+    background: linear-gradient(to right, #00f2fe, #4facfe);
+    color: white;
+    border: none;
+    padding: 14px;
+    border-radius: 12px;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 17px;
+    transition: 0.3s;
+}
+
+.signup-btn {
+    background: transparent;
+    border: 2px solid #ffc107;
+    color: #ffc107;
+    padding: 12px;
+    border-radius: 12px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.login-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0, 242, 254, 0.4);
+}
+
+.signup-btn:hover {
+    background: #ffc107;
+    color: black;
+}
+
+.go-back {
+    display: inline-block;
+    margin-top: 25px;
+    color: rgba(25, 118, 42, 0.6);
+    text-decoration: none;
+    font-size: 14px;
+    transition: 0.3s;
+}
+
+.go-back:hover {
+    color: rgb(42, 164, 105);
+}
+
+#auth-msg {
+    margin: 15px 0;
+    color: #ff6b6b;
     font-weight: bold;
 }
+/* --- ПРОФИЛЬ БАРАГЫНЫН СТИЛДЕРИ --- */
 
-/* Түнкү режимде оюн талаасын оңдоо */
-body.dark-theme .game-card {
-    background-color: #1e1e1e !important;
-    border: 1px solid #333;
+.profile-container {
+    max-width: 450px;
+    margin: 80px auto;
+    padding: 40px;
+    background: rgba(255, 255, 255, 0.1); /* Тунук ак түс */
+    backdrop-filter: blur(15px); /* Артын бүдөмүктөтүү */
+    -webkit-backdrop-filter: blur(15px);
+    border-radius: 25px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+    text-align: center;
+    color: #fff;
+    font-family: 'Poppins', sans-serif;
 }
 
-body.dark-theme #userAnswer {
-    background-color: #2c3e50;
+.profile-container h1 {
+    font-size: 28px;
+    margin-bottom: 10px;
+    color: #4facfe; /* Көк түстөгү акцент */
+}
+
+.profile-container p {
+    font-size: 16px;
+    color: #ddd;
+    margin-bottom: 25px;
+}
+
+#user-email {
+    color: #fff;
+    text-shadow: 0 0 10px rgba(79, 172, 254, 0.5);
+}
+
+.stats {
+    background: rgba(0, 0, 0, 0.3);
+    padding: 20px;
+    border-radius: 15px;
+    margin-bottom: 30px;
+    text-align: left;
+}
+
+.stats h3 {
+    font-size: 18px;
+    margin-bottom: 15px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 5px;
+    color: #00f2fe;
+}
+
+.stats ul {
+    list-style: none;
+    padding: 0;
+}
+
+.stats ul li {
+    padding: 8px 0;
+    font-size: 15px;
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px dashed rgba(255, 255, 255, 0.05);
+}
+
+.stats ul li:last-child {
+    border-bottom: none;
+}
+
+/* Чыгуу баскычы */
+.profile-container button {
+    width: 100%;
+    padding: 12px;
+    background: linear-gradient(45deg, #ff416c, #ff4b2b);
+    border: none;
+    border-radius: 10px;
     color: white;
-    border-color: #27ae60;
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    font-size: 16px;
+}
+
+.profile-container button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(255, 75, 43, 0.4);
+}
+
+.profile-container a {
+    display: inline-block;
+    margin-top: 20px;
+    color: #aaa;
+    text-decoration: none;
+    font-size: 14px;
+    transition: color 0.3s;
+}
+
+.profile-container a:hover {
+    color: #fff;
 }

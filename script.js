@@ -1,7 +1,11 @@
-// 1. ӨЗГӨРМӨЛӨР
+// 1. SUPABASE КОНФИГУРАЦИЯСЫ
+const SUPABASE_URL = 'https://iugnskwqgobuwxabqbnf.supabase.co';
+const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Iml1Z25za3dxZ29idXd4YWJxYm5mIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzMzMjY1OTksImV4cCI6MjA4ODkwMjU5OX0.luDTOm7cVb_nvFho-enYijXsr-HDBBoQqCYCzYcpSGA'; 
+const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+// 2. ӨЗГӨРМӨЛӨР ЖАНА КОТОРМОЛОР (Сен жазган бойдон)
 let isSpeaking = false;
 
-// 2. КОТОРМОЛОР СӨЗДҮГҮ
 const translations = {
     'kg': {
         'main-title': 'БИЛИМ ПЛАТФОРМАСЫ',
@@ -47,40 +51,61 @@ const translations = {
     }
 };
 
-// 3. САБАКТЫ УГУУ ЖАНА ТОКТОТУУ ФУНКЦИЯСЫ
-function speakText() {
-    const button = document.querySelector(".ai-button");
+// 3. БАРАКЧАЛАРДЫ КОРГОО (Сен берген эң акыркы логика)
+async function checkAccess() {
+    const { data: { user } } = await supabaseClient.auth.getUser();
+    const protectedPages = ['matematika', 'taryh', 'geografiya', 'informatika', 'math-hard'];
+    const currentURL = window.location.href;
 
-    if (window.speechSynthesis.speaking && isSpeaking) {
-        window.speechSynthesis.cancel();
-        isSpeaking = false;
-        const currentLang = document.documentElement.lang || 'kg';
-        button.innerText = translations[currentLang]['ai-btn'];
-        return;
+    const isProtected = protectedPages.some(page => currentURL.includes(page));
+
+    if (isProtected && !user) {
+        console.log("Кирүүгө уруксат жок!");
+        alert("Бул бөлүмдү көрүү үчүн алгач сайтка кириңиз!");
+        window.location.href = "auth.html";
     }
-
-    let content = document.body.innerText;
-    let speech = new SpeechSynthesisUtterance(content);
-    
-    speech.lang = 'ru-RU'; 
-    speech.rate = 1.0;
-
-    speech.onstart = () => {
-        isSpeaking = true;
-        button.innerText = (document.documentElement.lang === 'ru') ? "🛑 Остановить" : "🛑 Токтотуу";
-    };
-
-    speech.onend = () => {
-        isSpeaking = false;
-        const currentLang = document.documentElement.lang || 'kg';
-        button.innerText = translations[currentLang]['ai-btn'];
-    };
-
-    window.speechSynthesis.cancel(); 
-    window.speechSynthesis.speak(speech);
 }
 
-// 4. ТИЛ КОТОРУУ ФУНКЦИЯСЫ
+// 4. ПИКИРЛЕР (Load & Send)
+async function loadComments() {
+    const { data, error } = await supabaseClient
+        .from('site_comments')
+        .select('*')
+        .order('created_at', { ascending: false });
+
+    if (error) return;
+
+    const list = document.getElementById('comments-list');
+    if (list) {
+        list.innerHTML = data.map(c => `
+            <li>
+                <b>${c.user_name}</b>
+                <span style="font-size: 10px; color: gray;">${new Date(c.created_at).toLocaleString()}</span>
+                <p>${c.comment_text}</p>
+            </li>
+        `).join('');
+    }
+}
+
+async function sendComment() {
+    const nameInput = document.getElementById('userName');
+    const textInput = document.getElementById('userComment');
+    const name = nameInput.value.trim();
+    const text = textInput.value.trim();
+
+    if (!name || !text) { alert("Толук жазыңыз!"); return; }
+
+    const { error } = await supabaseClient
+        .from('site_comments')
+        .insert([{ user_name: name, comment_text: text }]);
+
+    if (!error) {
+        textInput.value = '';
+        loadComments();
+    }
+}
+
+// 5. САЙТТЫН ФУНКЦИЯЛАРЫ (Тил, Темы, Чыгуу)
 function changeLang(lang) {
     document.documentElement.lang = lang; 
     const elements = document.querySelectorAll('[data-key]');
@@ -92,45 +117,39 @@ function changeLang(lang) {
     });
 }
 
-// 5. ТҮНКҮ РЕЖИМ ФУНКЦИЯСЫ
 function toggleDarkMode() {
-    // Классты алмаштыруу
     const isDark = document.body.classList.toggle('dark-theme');
     const btn = document.getElementById('dark-mode-btn');
-    
-    // Тандоону сактап коюу
     localStorage.setItem('theme', isDark ? 'dark' : 'light');
-    
-    // Баскычтын текстин алмаштыруу
-    if (btn) {
-        btn.innerText = isDark ? "☀️ Жарык режим" : "🌙 Караңгы режим";
-    }
+    if (btn) btn.innerText = isDark ? "☀️ Жарык режим" : "🌙 Караңгы режим";
 }
 
-// 6. ПАРОЛЬ ТЕКШЕРҮҮ
-function checkPassword() {
-    let input = prompt("🔐 Бул жабык курс. Кирүү үчүн паролду жазыңыз:");
-    let correctPassword = "2007"; 
-
-    if (input === correctPassword) {
-        alert("Пароль туура! Куш келиңиз.");
-        document.body.style.display = "block"; 
-    } else {
-        alert("Ката! Сизге кирүүгө уруксат берилген жок.");
-        window.location.href = "index.html"; 
-    }
+async function handleLogout() {
+    await supabaseClient.auth.signOut();
+    window.location.href = "auth.html";
 }
 
-// 7. БАРАКЧА ЖҮКТӨЛГӨНДӨ БААРЫН ТЕКШЕРҮҮ
-window.addEventListener('DOMContentLoaded', () => {
-    // Караңгы режимди текшерүү
-    const savedTheme = localStorage.getItem('theme');
-    if (savedTheme === 'dark') {
-        document.body.classList.add('dark-theme');
-        const btn = document.getElementById('dark-mode-btn');
-        if (btn) btn.innerText = "☀️ Жарык режим";
-    }
+// 6. КИРҮҮ ЖАНА КАТТАЛУУ
+async function handleLogin() {
+    const email = document.getElementById('auth-email').value;
+    const password = document.getElementById('auth-password').value;
+    const { error } = await supabaseClient.auth.signInWithPassword({ email, password });
 
-    // Паролду чакыруу (Эгер баракча демейкиде display: none болсо)
-    // checkPassword(); 
+    if (error) document.getElementById('auth-msg').innerText = "Ката: " + error.message;
+    else window.location.href = "profile.html";
+}
+
+async function handleSignUp() {
+    const email = document.getElementById('auth-email').value;
+    const password = document.getElementById('auth-password').value;
+    const { error } = await supabaseClient.auth.signUp({ email, password });
+
+    if (error) document.getElementById('auth-msg').innerText = "Ката: " + error.message;
+    else document.getElementById('auth-msg').innerText = "Каттоо ийгиликтүү! Почтаны текшериңиз.";
+}
+
+// 7. БАРАКЧА ЖҮКТӨЛГӨНДӨ БААРЫН ИШТЕТҮҮ
+document.addEventListener('DOMContentLoaded', () => {
+    checkAccess(); 
+    loadComments();
 });

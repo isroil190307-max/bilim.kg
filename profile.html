@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="kg">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Менин профилим - Bilim.kg</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="auth-page">
+
+    <div class="glass-container">
+        <div class="profile-container">
+            <div class="user-icon">👤</div>
+            <h1>Кош келиңиз!</h1>
+            <p>Сиздин почтаңыз: <b id="user-email">Жүктөлүүдө...</b></p>
+            
+            <div class="stats">
+                <h3>📊 Менин жетишкендиктерим:</h3>
+                <ul>
+                    <li><span>Математика:</span> <span class="score">0 упай</span></li>
+                    <li><span>Тарых:</span> <span class="score">0 упай</span></li>
+                    <li><span>География:</span> <span class="score">0 упай</span></li>
+                </ul>
+            </div>
+
+            <div class="profile-actions">
+                <button onclick="handleLogout()" class="logout-btn">Сайттан чыгуу</button>
+                <a href="index.html" class="back-link">← Башкы бетке кайтуу</a>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="script.js"></script>
+
+    <script>
+        // Профиль жүктөлгөндө колдонуучунун маалыматын алуу
+        async function initProfile() {
+            // script.js ичиндеги supabaseClient колдонулат
+            const { data: { user }, error } = await supabaseClient.auth.getUser();
+
+            if (error || !user) {
+                // Эгер колдонуучу кирбесе, логин барагына кууп жиберет
+                window.location.href = "auth.html";
+            } else {
+                // Почтаны экранга чыгаруу
+                document.getElementById('user-email').innerText = user.email;
+                console.log("Колдонуучу ийгиликтүү кирди:", user.email);
+            }
+        }
+
+        // Баракча ачылганда иштетүү
+        document.addEventListener('DOMContentLoaded', initProfile);
+    </script>
+</body>
+</html>
