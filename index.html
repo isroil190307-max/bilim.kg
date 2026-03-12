@@ -7,46 +7,45 @@
     <link rel="stylesheet" href="style.css">
     <link rel="manifest" href="manifest.json">
 
-<script>
-  if ('serviceWorker' in navigator) {
-    window.addEventListener('load', () => {
-      navigator.serviceWorker.register('sw.js')
-        .then(reg => console.log('PWA ийгиликтүү катталды!', reg.scope))
-        .catch(err => console.log('Каттоодо ката кетти:', err));
-    });
-  }
-</script>
-<link rel="apple-touch-icon" href="https://cdn-icons-png.flaticon.com/512/5351/5351486.png">
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('sw.js')
+                    .then(reg => console.log('PWA ийгиликтүү катталды!', reg.scope))
+                    .catch(err => console.log('Каттоодо ката кетти:', err));
+            });
+        }
+    </script>
+    <link rel="apple-touch-icon" href="https://cdn-icons-png.flaticon.com/512/5351/5351486.png">
 </head>
 <body>
 
 <header>
-    <div class="top-bar container">
-        <button onclick="toggleDarkMode()" id="dark-mode-btn" style="padding: 5px 10px; cursor: pointer; border-radius: 5px; border: 1px solid #ccc;">🌙 Караңгы режим</button>
-        <div class="lang-switcher">
-            <button onclick="changeLang('kg')">KG</button>
-            <button onclick="changeLang('ru')">RU</button>
-        </div>
-    </div>
-
     <div class="container">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+            <button onclick="toggleDarkMode()" id="dark-mode-btn" style="padding: 5px 10px; cursor: pointer; border-radius: 5px; border: 1px solid #ccc;">🌙 Караңгы режим</button>
+            
+            <div class="header-right">
+                <a href="profile.html" style="text-decoration: none; background: #4facfe; color: white; padding: 5px 15px; border-radius: 5px; margin-right: 10px; font-weight: bold;">👤 Профиль</a>
+                <button onclick="changeLang('kg')">KG</button>
+                <button onclick="changeLang('ru')">RU</button>
+            </div>
+        </div>
+        
         <h1 data-key="main-title">БИЛИМ ПЛАТФОРМАСЫ</h1>
         <p data-key="sub-title">Сапаттуу билим — ийгиликтин ачкычы</p>
         
-        <nav class="main-menu">
-            <a href="index.html" class="active">🏠 Башкы бет</a>
+        <nav>
             <a href="matematika.html" class="nav-btn-link" data-key="nav-math">Математика</a>
             <a href="taryh.html" class="nav-btn-link" data-key="nav-history">Тарых</a>
             <a href="geografiya.html" class="nav-btn-link" data-key="nav-geo">География</a>
             <a href="informatika.html" class="nav-btn-link" data-key="nav-it">Информатика</a>
-            <a href="auth.html">🔐 Кирүү</a>
-            <a href="profile.html">👤 Профиль</a>
         </nav>
     </div>
 </header>
 
 <main class="container">
-    <div style="margin: 20px 0;">
+    <div style="margin: 20px 0; text-align: center;">
         <button onclick="speakText()" class="ai-button" data-key="ai-btn">🔊 Сабакты угуу</button>
     </div>
 
@@ -56,13 +55,10 @@
     </section>
     
     <div style="text-align: center; margin-bottom: 30px;">
-        <a href="math-hard.html" style="background-color: #ffc107; color: black; padding: 15px 30px; text-decoration: none; border-radius: 10px; font-weight: bold; display: inline-block; border: 2px solid #e0a800;">
+        <a href="math-hard.html" style="background-color: #ffc107; color: black; padding: 15px 30px; text-decoration: none; border-radius: 10px; font-weight: bold; display: inline-block; border: 2px solid #e0a800; margin: 5px;">
             📝 Татаал тестти баштоо
         </a>
-    </div>
-
-    <div style="text-align: center; margin-bottom: 30px;">
-        <a href="python-course.html" style="background-color: #ffc107; color: black; padding: 15px 30px; text-decoration: none; border-radius: 10px; font-weight: bold; display: inline-block; border: 2px solid #e0a800;">
+        <a href="python-course.html" style="background-color: #ffc107; color: black; padding: 15px 30px; text-decoration: none; border-radius: 10px; font-weight: bold; display: inline-block; border: 2px solid #e0a800; margin: 5px;">
             🐍 Python Курсу
         </a>
     </div>
@@ -86,20 +82,34 @@
             <a href="video.html" class="read-btn" data-key="btn-video">Видеолорду көрүү</a>
         </div>
     </section>
-</main>
 
-<div class="comment-section">
-    <h3>Пикир калтырыңыз</h3>
-    <div class="input-group">
-        <input type="text" id="userName" placeholder="Атыңыз">
-        <textarea id="userComment" placeholder="Пикириңиз"></textarea>
-        <button onclick="sendComment()">Жөнөтүү</button>
+    <div style="text-align: center; margin: 30px 0;">
+        <h3 data-key="contact-title">Суроолор боюнча жеке жардам:</h3>
+        <a href="https://wa.me/996508713717" class="read-btn" style="background-color: #25D366; border-color: #25D366; color: white; text-decoration: none; padding: 10px 20px; border-radius: 5px; display: inline-block;">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" width="20" style="vertical-align: middle;"> WhatsApp-тан жазуу
+        </a>
     </div>
-    <div class="display-section">
-        <h3>Бардык пикирлер:</h3>
-        <ul id="comments-list"></ul>
+
+    <div class="container" style="margin: 40px auto; max-width: 1000px;">
+        <h3 style="text-align: center; color: #333; margin-bottom: 20px;">Окуучулардын талкуулоо чаты:</h3>
+        <div style="background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.15); border: 1px solid #ddd;">
+            <iframe src="https://www5.cbox.ws/box/?boxid=961509&boxtag=9gAIuB" width="100%" height="450" allowtransparency="yes" frameborder="0" scrolling="auto" style="border: none;"></iframe>
+        </div>
     </div>
-</div>
+
+    <div class="comment-section container" style="margin-top: 30px;">
+        <h3>Пикир калтырыңыз</h3>
+        <div class="input-group">
+            <input type="text" id="userName" placeholder="Атыңыз" style="width: 100%; padding: 10px; margin-bottom: 5px;">
+            <textarea id="userComment" placeholder="Пикириңиз" style="width: 100%; padding: 10px; margin-bottom: 5px;"></textarea>
+            <button onclick="sendComment()" class="read-btn">Жөнөтүү</button>
+        </div>
+        <div class="display-section">
+            <h3>Бардык пикирлер:</h3>
+            <ul id="comments-list"></ul>
+        </div>
+    </div>
+</main>
 
 <footer>
     <p data-key="footer-text">&copy; 2026 Билим Платформасы</p>
@@ -107,5 +117,26 @@
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="script.js"></script>
+
+<script>
+    // Саламдашуу функциясы
+    function dynamicGreeting() {
+        const hour = new Date().getHours();
+        let message = "";
+        if (hour < 12) message = "Кутман таң! Окууга даярсызбы? 👋";
+        else if (hour < 18) message = "Кутман күн! Билим алууну улантабыз! 📚";
+        else message = "Кутман кеч! Бүгүнкү ийгиликтериңиз кандай? ✨";
+        
+        const welcomeEl = document.querySelector('[data-key="welcome-desc"]');
+        if (welcomeEl) welcomeEl.innerText = message;
+    }
+
+    window.addEventListener('DOMContentLoaded', dynamicGreeting);
+</script>
+
+<script type="text/javascript">
+var sc_project=13206444; var sc_invisible=1; var sc_security="d435eee0";
+</script>
+<script type="text/javascript" src="https://www.statcounter.com/counter/counter.js" async></script>
 </body>
 </html>
