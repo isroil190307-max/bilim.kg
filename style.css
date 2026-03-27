@@ -462,42 +462,66 @@ nav {
 }
 /* --- ПРОФИЛЬ БАРАГЫНЫН СТИЛДЕРИ --- */
 
-.profile-container {
-    max-width: 450px;
-    margin: 80px auto;
-    padding: 40px;
-    /* Күңүрт жана тунук фон */
-    background: rgba(0, 0, 0, 0.7); 
-    backdrop-filter: blur(15px);
-    -webkit-backdrop-filter: blur(15px);
-    border-radius: 25px;
-    /* Алтын түстөгү ичке чек */
-    border: 1px solid rgba(255, 215, 0, 0.3); 
-    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8);
-    text-align: center;
-    color: #fff;
+/* 1. ЖАЛПЫ ЭКРАНДЫН ФОНУ (ОБОЙ) */
+body {
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* Бул жерде кооз кочкул градиент жана бүдөмүк сүрөт айкалышкан */
+    background: radial-gradient(circle, rgba(20, 20, 20, 0.8) 0%, rgba(0, 0, 0, 1) 100%), 
+                url('https://images.unsplash.com/photo-1534796636912-3b95b3ab5986?q=80&w=2071&auto=format&fit=crop');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed; /* Скролл кылганда обой жылбайт */
     font-family: 'Poppins', sans-serif;
 }
 
+/* 2. НЕГИЗГИ КОНТЕЙНЕР (ПРОФИЛЬ БЛОГУ) */
+.profile-container {
+    max-width: 450px;
+    width: 90%;
+    margin: 20px;
+    padding: 40px;
+    background: rgba(0, 0, 0, 0.75); /* Күңүрт тунук фон */
+    backdrop-filter: blur(20px); /* Артын жумшак бүдөмүктөтүү */
+    -webkit-backdrop-filter: blur(20px);
+    border-radius: 25px;
+    border: 1px solid rgba(255, 215, 0, 0.3); /* Алтын түстөгү ичке чек */
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.9);
+    text-align: center;
+    color: #fff;
+}
+
+/* 3. ТЕКСТ ЖАНА АТАЛЫШТАР */
 .profile-container h1 {
-    font-size: 28px;
+    font-size: 30px;
     margin-bottom: 10px;
     color: #ffd700; /* Алтын түс */
+    text-shadow: 0 0 15px rgba(255, 215, 0, 0.2);
+}
+
+.profile-container p {
+    font-size: 16px;
+    color: #ccc;
+    margin-bottom: 25px;
 }
 
 #user-email {
     color: #ffd700;
-    text-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
+    font-weight: bold;
 }
 
+/* 4. СТАТИСТИКА БЛОГУ */
 .stats {
-    background: rgba(255, 255, 255, 0.05);
+    background: rgba(255, 255, 255, 0.03);
     padding: 20px;
-    border-radius: 15px;
+    border-radius: 18px;
     margin-bottom: 30px;
     text-align: left;
-    /* Сиз каалаган сол капталдагы алтын сызык ушул жерде жакшы көрүнөт */
-    border-left: 3px solid #ffd700; 
+    border-left: 4px solid #ffd700; /* Сол жактагы алтын сызык */
 }
 
 .stats h3 {
@@ -508,38 +532,55 @@ nav {
     padding-bottom: 5px;
 }
 
-/* Шилтеме (a) эффектин оңдоо */
-.profile-container a {
-    display: inline-block; /* Блок сыяктуу иштеши үчүн керек */
-    margin-top: 20px;
-    color: #aaa;
-    text-decoration: none;
-    font-size: 14px;
-    transition: all 0.3s ease;
-    padding: 5px 10px;
+.stats ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
 }
 
-.profile-container a:hover {
-    color: #fff;
-    background: rgba(255, 255, 255, 0.05);
-    border-radius: 5px;
-    /* Шилтемеге чек (border) кошсоңуз, текст титиреп кетпеши үчүн 
-       аны алдын ала 'transparent' кылып коюу керек же жөн эле түсүн өзгөртүү зарыл */
+.stats ul li {
+    padding: 10px 0;
+    font-size: 15px;
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px dashed rgba(255, 255, 255, 0.1);
 }
 
+.stats ul li:last-child {
+    border-bottom: none;
+}
+
+/* 5. БАСКЫЧ (BUTTON) */
 .profile-container button {
     width: 100%;
-    padding: 12px;
-    background: linear-gradient(45deg, #ffd700, #b8860b); /* Алтын градиент */
+    padding: 14px;
+    background: linear-gradient(45deg, #ffd700, #b8860b);
     border: none;
-    border-radius: 10px;
-    color: #000; /* Кара текст алтын фондо жакшы окулат */
-    font-weight: bold;
+    border-radius: 12px;
+    color: #000;
+    font-weight: 800;
+    font-size: 16px;
+    text-transform: uppercase;
     cursor: pointer;
-    transition: 0.3s;
+    transition: all 0.3s ease;
 }
 
 .profile-container button:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(255, 215, 0, 0.3);
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(255, 215, 0, 0.3);
+    filter: brightness(1.1);
+}
+
+/* 6. ШИЛТЕМЕЛЕР */
+.profile-container a {
+    display: inline-block;
+    margin-top: 25px;
+    color: #888;
+    text-decoration: none;
+    font-size: 14px;
+    transition: color 0.3s;
+}
+
+.profile-container a:hover {
+    color: #ffd700;
 }
