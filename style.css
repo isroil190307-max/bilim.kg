@@ -555,7 +555,7 @@ body {
     border-radius: 20px;
     margin: 30px 0;
     text-align: left;
-    border: 1px solid rgba(255, 215, 0, 0.1); /* Бир аз алтын түс кошулду */
+  
     position: relative;
     overflow: hidden;
     /* Назик алтын көлөкө */
