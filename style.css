@@ -462,160 +462,149 @@ nav {
 }
 /* --- ПРОФИЛЬ БАРАГЫНЫН СТИЛДЕРИ --- */
 
-/* 1. 
-body {
-    margin: 0;
-    padding: 0;
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    /* Кыймылдуу жана терең градиент */
-    background: radial-gradient(circle at 50% 50%, rgba(30, 30, 30, 0.7) 0%, rgba(0, 0, 0, 1) 100%), 
-                url('https://images.unsplash.com/photo-1614850523296-d8c1af93d400?q=80&w=2070&auto=format&fit=crop');
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
-    font-family: 'Poppins', sans-serif;
-    overflow: hidden;
-}
-
-/* 2. НЕГИЗГИ КОНТЕЙНЕР (PREMIUM GLASS) */
 .profile-container {
     max-width: 450px;
-    width: 90%;
-    padding: 50px 40px;
-    background: rgba(15, 15, 15, 0.75); /* Бир аз каныккан кара */
-    backdrop-filter: blur(30px); /* Терең бүдөмүк */
-    -webkit-backdrop-filter: blur(30px);
-    border-radius: 35px;
-    /* Жаркыраган алтын сызык (Neon Gold effect) */
-    border: 1px solid rgba(255, 215, 0, 0.2); 
-    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.7), 
-                0 0 30px rgba(255, 215, 0, 0.05); /* Назик алтын нуру */
+    margin: 80px auto;
+    padding: 40px;
+    background: rgba(255, 255, 255, 0.1); /* Тунук ак түс */
+    backdrop-filter: blur(15px); /* Артын бүдөмүктөтүү */
+    -webkit-backdrop-filter: blur(15px);
+    border-radius: 25px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
     text-align: center;
     color: #fff;
-    transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
-    animation: slideUp 1.2s ease-out;
+    font-family: 'Poppins', sans-serif;
 }
 
-.profile-container:hover {
-    transform: translateY(-12px) scale(1.01);
-    border: 1px solid rgba(255, 215, 0, 0.6);
-    box-shadow: 0 40px 80px rgba(0, 0, 0, 0.8), 
-                0 0 40px rgba(255, 215, 0, 0.1);
-}
-
-/* Пайда болуу анимациясы */
-@keyframes slideUp {
-    from { opacity: 0; transform: translateY(50px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-/* 3. ТЕКСТ ЖАНА АКЦЕНТТЕР */
 .profile-container h1 {
-    font-size: 34px;
-    font-weight: 800;
-    margin-bottom: 8px;
-    background: linear-gradient(135deg, #ffd700 0%, #fff 50%, #b8860b 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    filter: drop-shadow(0 0 8px rgba(255, 215, 0, 0.4));
-    letter-spacing: -0.5px;
+    font-size: 28px;
+    margin-bottom: 10px;
+    color: #4facfe; /* Көк түстөгү акцент */
+}
+
+.profile-container p {
+    font-size: 16px;
+    color: #ddd;
+    margin-bottom: 25px;
 }
 
 #user-email {
-    color: #ffd700;
-    font-size: 14px;
-    font-weight: 300;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    opacity: 0.8;
+    color: #fff;
+    text-shadow: 0 0 10px rgba(79, 172, 254, 0.5);
 }
 
-/* 4. СТАТИСТИКА БЛОГУ (LUXURY BOX) */
 .stats {
-    background: rgba(255, 255, 255, 0.02);
-    padding: 25px;
-    border-radius: 22px;
-    margin: 35px 0;
+    background: rgba(0, 0, 0, 0.3);
+    padding: 20px;
+    border-radius: 15px;
+    margin-bottom: 30px;
     text-align: left;
-    border: 1px solid rgba(255, 255, 255, 0.05);
-    position: relative;
-    overflow: hidden;
-    transition: 0.4s;
-}
-
-.stats::before {
-    content: "";
-    position: absolute;
-    top: 0; left: 0; width: 5px; height: 100%;
-    background: linear-gradient(to bottom, #ffd700, #b8860b);
-}
-
-.stats:hover {
-    background: rgba(255, 215, 0, 0.03);
-    border-color: rgba(255, 215, 0, 0.2);
 }
 
 .stats h3 {
-    font-size: 15px;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 1.5px;
-    color: #ffd700;
+    font-size: 18px;
     margin-bottom: 15px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 5px;
+    color: #00f2fe;
+}
+
+.stats ul {
+    list-style: none;
+    padding: 0;
 }
 
 .stats ul li {
-    padding: 14px 0;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+    padding: 8px 0;
+    font-size: 15px;
     display: flex;
     justify-content: space-between;
-    transition: 0.3s;
+    border-bottom: 1px dashed rgba(255, 255, 255, 0.05);
 }
 
-.stats ul li:hover {
-    transform: translateX(5px);
-    color: #ffd700;
+.stats ul li:last-child {
+    border-bottom: none;
 }
 
-/* 5. БАСКЫЧ (SHINING GOLD BUTTON) */
+/* Чыгуу баскычы */
 .profile-container button {
     width: 100%;
-    padding: 18px;
-    background: linear-gradient(45deg, #b8860b, #ffd700, #b8860b);
-    background-size: 200% auto;
+    padding: 12px;
+    background: linear-gradient(45deg, #ff416c, #ff4b2b);
     border: none;
-    border-radius: 18px;
-    color: #000;
-    font-weight: 800;
-    font-size: 16px;
-    text-transform: uppercase;
-    letter-spacing: 2px;
+    border-radius: 10px;
+    color: white;
+    font-weight: bold;
     cursor: pointer;
-    transition: 0.5s;
-    box-shadow: 0 15px 30px rgba(184, 134, 11, 0.3);
+    transition: transform 0.2s, box-shadow 0.2s;
+    font-size: 16px;
 }
 
 .profile-container button:hover {
-    background-position: right center;
-    transform: scale(1.03) translateY(-2px);
-    box-shadow: 0 20px 40px rgba(255, 215, 0, 0.4);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(255, 75, 43, 0.4);
 }
 
-/* 6. ШИЛТЕМЕ (MINIMALIST) */
 .profile-container a {
     display: inline-block;
-    margin-top: 30px;
-    color: #888;
+    margin-top: 20px;
+    color: #aaa;
     text-decoration: none;
-    font-size: 13px;
-    letter-spacing: 1px;
-    transition: 0.3s;
+    font-size: 14px;
+    transition: color 0.3s;
 }
 
 .profile-container a:hover {
-    color: #ffd700;
-    text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+    color: #fff;
+}
+/* --- ПРОФИЛЬ ЖАНА ТИЛ БАСКЫЧТАРЫН ОҢДОО --- */
+.header-right {
+    display: flex !important;
+    align-items: center !important;
+    gap: 10px; /* Баскычтардын ортосундагы аралык */
+}
+
+.header-right a, .header-right button {
+    display: inline-block !important;
+    vertical-align: middle;
+}
+
+/* Профиль баскычынын дизайны (эгер мурда жок болсо) */
+.header-right a {
+    background: #4facfe;
+    color: white;
+    padding: 8px 15px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 14px;
+    transition: 0.3s;
+}
+
+.header-right a:hover {
+    background: #00f2fe;
+    box-shadow: 0 0 10px rgba(79, 172, 254, 0.5);
+}
+
+/* Тил баскычтары (KG/RU) */
+.header-right button {
+    background: rgba(255, 255, 255, 0.2);
+    border: 1px solid #ccc;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.header-right button:hover {
+    background: rgba(255, 255, 255, 0.4);
+}
+
+/* Мобилдик телефондордо баскычтар кысылып калбашы үчүн */
+@media (max-width: 600px) {
+    header .container > div {
+        flex-direction: column;
+        gap: 15px;
+    }
 }

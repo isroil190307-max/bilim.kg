@@ -4,14 +4,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Билим Платформасы</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css?v=1.1">
     <link rel="manifest" href="manifest.json">
 
     <script>
+        // Service Workerди каттоо (бирок жаңыланганын текшерүү менен)
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
                 navigator.serviceWorker.register('sw.js')
-                    .then(reg => console.log('PWA ийгиликтүү катталды!', reg.scope))
+                    .then(reg => {
+                        console.log('PWA ийгиликтүү катталды!', reg.scope);
+                        // Жаңы версия болсо, аны дароо активдештирүү
+                        reg.onupdatefound = () => {
+                            const installingWorker = reg.installing;
+                            installingWorker.onstatechange = () => {
+                                if (installingWorker.state === 'installed' && navigator.serviceWorker.controller) {
+                                    console.log('Жаңы версия табылды, сураныч баракчаны жаңылаңыз.');
+                                }
+                            };
+                        };
+                    })
                     .catch(err => console.log('Каттоодо ката кетти:', err));
             });
         }
@@ -116,10 +128,9 @@
 </footer>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script src="script.js"></script>
+<script src="script.js?v=1.1"></script>
 
 <script>
-    // Саламдашуу функциясы
     function dynamicGreeting() {
         const hour = new Date().getHours();
         let message = "";
@@ -130,7 +141,6 @@
         const welcomeEl = document.querySelector('[data-key="welcome-desc"]');
         if (welcomeEl) welcomeEl.innerText = message;
     }
-
     window.addEventListener('DOMContentLoaded', dynamicGreeting);
 </script>
 
